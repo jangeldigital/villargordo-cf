@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escuela Deportiva Villargordo CF</title>
+<meta name="description" content="Escuela Deportiva y primer equipo del Villargordo CF (Villatorres, Jaén). Calendario, cantera, entrevistas, álbum de cromos y más de 80 años de fútbol en Villargordo.">
+<meta name="theme-color" content="#0B1226">
+<link rel="icon" href="img/escudo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cromos.css?v=2">
+<style>
+:root{
+  --noche:#0B1226; --noche-2:#101A36; --noche-3:#17234A; --fondo-pie:#070C1A;
+  --carmesi:#B5122B; --carmesi-2:#D21E3B;
+  --oro:#C9A23A; --oro-claro:#E6CD85; --oro-osc:#8F7024;
+  --hueso:#F5F1E8; --hueso-2:#EAE3D3; --tinta:#0E1220; --gris:#5B6275;
+  --claro:rgba(245,241,232,.74); --tenue:rgba(245,241,232,.5);
+  --hilo:rgba(201,162,58,.35); --hilo-claro:rgba(245,241,232,.12);
+  --laurel:#4F7A34; --oleo:#658049;
+  --display:"Big Shoulders Display",Impact,sans-serif;
+  --texto:"Inter Tight",system-ui,sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--texto);color:var(--hueso);background:var(--noche);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.94;letter-spacing:.005em}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--oro)}
+.kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.sec{padding:120px 0;position:relative}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2.6rem,6vw,4.6rem);margin-top:16px}
+.sec-head h2 em{font-style:normal;color:var(--oro)}
+.sec-head p{max-width:440px;color:var(--claro)}
+/* secciones claras */
+.claro{background:var(--hueso);color:var(--tinta)}
+.claro .sec-head p{color:var(--gris)}
+.claro .kicker{color:var(--carmesi)}
+.claro .sec-head h2 em{color:var(--carmesi)}
+
+.btns{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:3px;font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:background .25s,color .25s,border-color .25s}
+.btn-rojo{background:var(--carmesi);color:#fff}
+.btn-rojo:hover{background:var(--carmesi-2)}
+.btn-linea{border-color:rgba(245,241,232,.38);color:var(--hueso);background:transparent}
+.btn-linea:hover{border-color:var(--oro);color:var(--oro)}
+.btn-oscuro{background:var(--tinta);color:var(--hueso)}
+.btn-oscuro:hover{background:var(--carmesi)}
+
+/* ---------- cabecera ---------- */
+.top{position:sticky;top:0;z-index:50;background:rgba(11,18,38,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--hilo)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca img{height:50px;width:auto}
+.marca b{font-family:var(--display);font-size:1.35rem;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
+.marca small{display:block;font-size:.62rem;letter-spacing:.26em;color:var(--oro);font-weight:700;margin-top:3px}
+nav ul{display:flex;gap:4px;list-style:none}
+nav a{text-decoration:none;font-weight:600;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;padding:10px 12px;color:var(--claro);position:relative;transition:color .2s}
+nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:1px;background:var(--oro);transform:scaleX(0);transition:transform .25s}
+nav a:hover{color:var(--hueso)}
+nav a:hover::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:1px solid var(--hilo);color:var(--hueso);font-size:1.3rem;width:44px;height:44px;border-radius:3px;cursor:pointer}
+
+/* ---------- portada ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--noche)}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,18,38,.96) 0%,rgba(11,18,38,.78) 42%,rgba(11,18,38,.25) 75%,rgba(11,18,38,.45) 100%)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;z-index:1;background:linear-gradient(180deg,transparent,var(--noche))}
+.hero .wrap{position:relative;z-index:3;padding-bottom:72px;padding-top:80px;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:end;width:100%}
+.hero h1{font-size:clamp(3.4rem,9.5vw,8.2rem);margin-top:22px;font-weight:900}
+.hero h1 em{font-style:normal;color:var(--oro)}
+.hero .lead{max-width:520px;margin-top:24px;font-size:1.1rem;color:var(--claro)}
+
+.partido{background:rgba(16,26,54,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--hilo);border-top:2px solid var(--oro);border-radius:4px;padding:26px}
+.partido .tag{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--oro)}
+.partido .vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;text-align:center;margin:20px 0}
+.partido .eq{font-family:var(--display);font-size:1.3rem;font-weight:800;text-transform:uppercase;line-height:1.05}
+.partido .eq img{height:62px;margin:0 auto 10px}
+.partido .rival-ico{height:62px;width:62px;margin:0 auto 10px;border-radius:50%;border:1px solid var(--hilo);display:grid;place-items:center;font-size:1.4rem;color:var(--oro)}
+.partido .x{font-family:var(--display);font-size:1.1rem;color:#fff;background:var(--carmesi);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;letter-spacing:.06em}
+.partido .info{border-top:1px solid var(--hilo-claro);padding-top:14px;font-size:.84rem;color:var(--claro);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.cuenta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.cuenta div{border:1px solid var(--hilo-claro);border-radius:3px;padding:10px 4px;text-align:center}
+.cuenta b{font-family:var(--display);font-size:2rem;font-weight:800;display:block;line-height:1;color:var(--oro-claro)}
+.cuenta span{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tenue);font-weight:600}
+
+/* ---------- cinta patrocinador ---------- */
+.cinta{background:var(--noche-2);overflow:hidden;white-space:nowrap;border-top:1px solid var(--hilo);border-bottom:1px solid var(--hilo)}
+.cinta .pista{display:inline-flex;gap:56px;padding:18px 0;animation:corre 40s linear infinite}
+.cinta span{display:inline-flex;align-items:center;gap:16px;font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--claro)}
+.cinta span::after{content:"◆";color:var(--oro);font-size:.6rem;margin-left:40px}
+.cinta img{height:26px;width:auto}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* ---------- escuela (claro) ---------- */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hueso-2);border:1px solid var(--hueso-2)}
+.cat{background:var(--hueso);padding:34px 30px 30px;position:relative;transition:background .3s}
+.cat::before{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--carmesi);transition:width .4s}
+.cat:hover{background:#fff}
+.cat:hover::before{width:100%}
+.cat .num{font-family:var(--display);font-weight:800;font-size:.9rem;letter-spacing:.2em;color:var(--oro-osc)}
+.cat h3{font-size:2.2rem;margin-top:26px}
+.cat p{font-size:.95rem;margin-top:10px;color:var(--gris)}
+.cat .edad{display:inline-block;margin-top:20px;font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--carmesi)}
+.inscribe{margin-top:40px;display:grid;grid-template-columns:240px 1fr auto;gap:36px;align-items:center;background:var(--noche);color:var(--hueso);border-radius:4px;overflow:hidden;padding-right:36px}
+.inscribe img{width:100%;height:100%;min-height:180px;object-fit:cover}
+.inscribe h3{font-size:2.3rem}
+.inscribe h3 em{font-style:normal;color:var(--oro)}
+.inscribe p{color:var(--claro);margin-top:8px}
+
+/* ---------- campo ---------- */
+.campo{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden}
+.campo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.campo::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,18,38,.95) 0%,rgba(11,18,38,.72) 45%,rgba(11,18,38,.1) 80%)}
+.campo .wrap{position:relative;z-index:2;width:100%}
+.campo h2{font-size:clamp(2.6rem,6vw,4.6rem);max-width:600px;margin-top:16px}
+.campo h2 em{font-style:normal;color:var(--oro)}
+.campo p{max-width:480px;margin-top:18px;color:var(--claro)}
+.datos{display:flex;gap:40px;margin-top:32px;flex-wrap:wrap}
+.datos div{border-left:1px solid var(--oro);padding-left:16px}
+.datos b{font-family:var(--display);font-size:2.4rem;font-weight:800;display:block;line-height:1;color:var(--oro-claro)}
+.datos span{font-size:.78rem;color:var(--claro);letter-spacing:.04em}
+
+/* ---------- calendario ---------- */
+.cal-sec{background:var(--noche)}
+.filtros{display:flex;gap:6px;flex-wrap:wrap}
+.filtros button{border:1px solid var(--hilo-claro);background:none;color:var(--claro);padding:10px 18px;border-radius:3px;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:all .2s}
+.filtros button:hover{border-color:var(--oro);color:var(--oro)}
+.filtros button[aria-pressed=true]{background:var(--oro);color:var(--tinta);border-color:var(--oro)}
+.balance{display:grid;grid-template-columns:repeat(5,1fr) 1.6fr;border:1px solid var(--hilo);border-radius:4px;margin-bottom:28px;background:rgba(255,255,255,.02)}
+.balance>div{padding:22px 20px;border-right:1px solid var(--hilo)}
+.balance>div:last-child{border-right:0}
+.balance b{display:block;font-family:"Big Shoulders Display",sans-serif;font-size:2.6rem;line-height:1;color:var(--hueso)}
+.balance b small{font-size:.55em;color:var(--claro)}
+.balance span{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--claro)}
+.balance .racha p{display:flex;gap:6px;margin-top:10px}
+.balance .racha i{font-style:normal;width:30px;height:30px;display:grid;place-items:center;border-radius:3px;font-weight:700;font-size:.78rem;color:#fff}
+.balance .racha i.V{background:var(--laurel)}.balance .racha i.E{background:#8a7a3e}.balance .racha i.D{background:var(--carmesi)}
+.ver-todo-c{text-align:center;margin-top:22px}
+.ver-todo{border:1px solid var(--oro);background:none;color:var(--oro);padding:13px 26px;border-radius:3px;font:600 .76rem/1 inherit;font-family:inherit;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.ver-todo:hover{background:var(--oro);color:var(--tinta)}
+@media (max-width:760px){.balance{grid-template-columns:repeat(5,1fr)}.balance>div{padding:14px 8px;text-align:center}.balance b{font-size:1.8rem}.balance span{font-size:.56rem;letter-spacing:.08em}.balance .racha{grid-column:1/-1;border-top:1px solid var(--hilo)}.balance .racha p{justify-content:center}}
+.jornadas{display:grid;border-top:1px solid var(--hilo-claro)}
+.jor{display:grid;grid-template-columns:80px 150px 1fr auto;align-items:center;gap:20px;padding:22px 16px;border-bottom:1px solid var(--hilo-claro);transition:background .2s}
+.jor:hover{background:rgba(245,241,232,.03)}
+.jor .j{font-family:var(--display);font-size:1.9rem;font-weight:800;color:var(--oro)}
+.jor .f{font-weight:600;font-size:.92rem;text-transform:capitalize}
+.jor .f small{display:block;color:var(--tenue);font-weight:500;text-transform:none}
+.jor .cruce{font-weight:600;font-size:1.02rem}
+.jor .cruce .nos{color:var(--oro-claro)}
+.jor .cruce small{display:block;font-weight:400;color:var(--tenue);font-size:.82rem}
+.res{font-family:var(--display);font-weight:800;font-size:1.35rem;min-width:96px;text-align:center;padding:6px 12px;border-radius:3px;letter-spacing:.04em}
+.res.V{background:var(--laurel);color:#fff} .res.E{background:var(--oro-osc);color:#fff} .res.D{background:var(--carmesi);color:#fff}
+.res.P{font-family:var(--texto);font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue);border:1px solid var(--hilo-claro)}
+.jor.prox{background:linear-gradient(90deg,rgba(201,162,58,.14),transparent 70%);border-left:2px solid var(--oro)}
+.jor.prox .res.P{background:var(--oro);color:var(--tinta);border-color:var(--oro)}
+.casa{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.18em;padding:3px 7px;border-radius:2px;border:1px solid var(--carmesi-2);color:#ff8a99;margin-left:10px;vertical-align:2px}
+.nota{margin-top:28px;font-size:.84rem;color:var(--tenue);max-width:820px}
+
+/* ---------- entrevistas ---------- */
+.vest{background:var(--noche-2);overflow:hidden}
+.vest::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 0%,rgba(181,18,43,.22),transparent 45%)}
+.vest .wrap{position:relative}
+.tabs{display:inline-flex;gap:32px;margin-bottom:44px;border-bottom:1px solid var(--hilo-claro)}
+.tabs button{border:0;background:none;color:var(--tenue);font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.5rem;padding:0 0 12px;cursor:pointer;letter-spacing:.04em;position:relative}
+.tabs button[aria-selected=true]{color:var(--hueso)}
+.tabs button[aria-selected=true]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--oro)}
+.panel[hidden]{display:none}
+.entrevistas{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.ent{background:var(--noche);border:1px solid var(--hilo-claro);border-radius:4px;padding:30px;display:flex;flex-direction:column;transition:border-color .3s}
+.ent:hover{border-color:var(--hilo)}
+.ent .quien{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+.avatar{width:60px;height:60px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:1.5rem;font-weight:800;color:var(--oro);border:1px solid var(--oro);overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.ent h3{font-size:1.7rem}
+.ent .rol{font-size:.8rem;color:var(--tenue);margin-top:4px}
+.ent ol{list-style:none;counter-reset:q;display:grid;gap:14px;flex:1}
+.ent li{counter-increment:q;display:grid;grid-template-columns:34px 1fr;gap:10px;font-size:.96rem;color:var(--claro)}
+.ent li::before{content:counter(q,decimal-leading-zero);font-family:var(--display);font-weight:800;color:var(--oro);font-size:1.05rem;line-height:1.5}
+.estado{margin-top:26px;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;display:inline-flex;align-self:flex-start;align-items:center;gap:10px;color:var(--oro-claro)}
+.estado::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--carmesi-2);animation:lat 1.6s infinite}
+@keyframes lat{50%{opacity:.25}}
+.ent.destacada{grid-column:span 2;display:grid;grid-template-columns:240px 1fr;gap:30px;border-color:var(--hilo)}
+.ent.destacada>img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:center 18%;border-radius:2px}
+.ent.destacada>div{display:flex;flex-direction:column}
+.camiseta{width:60px;height:60px;flex:none}
+.ruleta{margin-top:44px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;border:1px solid var(--hilo);border-radius:4px;padding:34px;background:linear-gradient(120deg,rgba(201,162,58,.08),transparent 60%)}
+.ruleta button{width:132px;height:132px;border-radius:50%;border:2px solid var(--oro);background:conic-gradient(var(--carmesi) 0 60deg,var(--noche-3) 0 120deg,var(--carmesi) 0 180deg,var(--noche-3) 0 240deg,var(--carmesi) 0 300deg,var(--noche-3) 0);font-family:var(--display);font-weight:800;font-size:1.4rem;text-transform:uppercase;cursor:pointer;color:#fff;letter-spacing:.06em;transition:transform .7s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 0 6px rgba(201,162,58,.12)}
+.ruleta .preg{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.1;text-transform:none}
+.ruleta small{display:block;margin-bottom:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.68rem;color:var(--oro)}
+.aviso{margin-top:24px;font-size:.84rem;color:var(--tenue);border-left:1px solid var(--oro);padding-left:14px}
+
+/* ---------- álbum de cromos ---------- */
+.album-sec{background:var(--noche);overflow:hidden}
+.album-sec::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,162,58,.13),transparent 55%)}
+.album-sec .wrap{position:relative}
+.video-pista{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-size:.84rem;color:var(--oro-claro)}
+.video-pista i{width:26px;height:26px;border-radius:50%;border:1px solid var(--oro);display:grid;place-items:center;font-style:normal;font-size:.6rem}
+.equipos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.equipo{background:var(--noche-2);color:var(--hueso);border:1px solid var(--hilo-claro);border-radius:4px;padding:0;cursor:pointer;text-align:left;font-family:inherit;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s;position:relative;overflow:hidden}
+.equipo:hover{transform:translateY(-6px);border-color:var(--oro)}
+.equipo .marco{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--noche-3)}
+.equipo .marco img.foto{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.equipo:hover .marco img.foto{transform:scale(1.05)}
+.equipo .marco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,18,38,.92))}
+.equipo .vacia{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 55%,var(--noche-2)),var(--noche-2) 75%);color:var(--claro);font-size:.8rem;letter-spacing:.06em;padding:20px}
+.equipo .vacia img{height:84px;margin:0 auto 12px;opacity:.95}
+.equipo .num{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--display);font-weight:800;font-size:.9rem;letter-spacing:.18em;color:var(--oro-claro)}
+.equipo .franja-eq{position:absolute;left:18px;right:18px;bottom:14px;z-index:2;font-family:var(--display);font-weight:800;font-size:2rem;text-transform:uppercase;line-height:1}
+.equipo .pie-eq{display:flex;justify-content:space-between;align-items:center;padding:16px 18px 6px;gap:10px}
+.equipo .pie-eq span{font-size:.78rem;color:var(--tenue)}
+.abrir{font-weight:700;font-size:.66rem!important;letter-spacing:.18em;text-transform:uppercase;color:var(--oro)!important;white-space:nowrap}
+.barra{height:3px;background:var(--hilo-claro);overflow:hidden;margin:8px 18px 18px}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--oro-osc),var(--oro-claro))}
+
+dialog.album{margin:auto;width:min(1120px,94vw);max-height:92vh;border:1px solid var(--hilo);border-radius:6px;padding:0;background:var(--noche);color:var(--hueso);box-shadow:0 40px 90px rgba(0,0,0,.6)}
+dialog.album::backdrop{background:rgba(5,9,20,.82);backdrop-filter:blur(6px)}
+.album-top{position:sticky;top:0;z-index:5;background:rgba(16,26,54,.96);backdrop-filter:blur(8px);padding:18px 28px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--hilo)}
+.album-top img{height:50px}
+.album-top h3{font-size:2.1rem}
+.album-top small{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.cerrar{margin-left:auto;background:none;color:var(--hueso);border:1px solid var(--hilo-claro);border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;flex:none;transition:border-color .2s,color .2s}
+.cerrar:hover{border-color:var(--oro);color:var(--oro)}
+.album-body{padding:28px}
+.album-plantilla{border-radius:3px;overflow:hidden;margin-bottom:26px;position:relative;aspect-ratio:21/9;background:var(--noche-2);border:1px solid var(--hilo)}
+.album-plantilla img{width:100%;height:100%;object-fit:cover}
+.album-plantilla .vacia{position:absolute;inset:0;display:grid;place-items:center;color:var(--claro);text-align:center;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--c) 50%,var(--noche-2)),var(--noche-2) 70%)}
+.album-plantilla .vacia img{height:110px;margin:0 auto 12px}
+.progreso{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-weight:600;font-size:.86rem;color:var(--claro)}
+.progreso .barra{flex:1;margin:0}
+.aviso-menores{border:1px solid var(--hilo);border-radius:3px;padding:14px 18px;margin-bottom:24px;font-size:.86rem;color:var(--claro)}
+.leyenda{font-size:.82rem;color:var(--oro-claro);margin:-8px 0 22px}
+.cromos{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:22px}
+
+/* ---------- vídeo del cromo ---------- */
+dialog.video-dlg{border:0;padding:0;background:transparent;max-width:none;max-height:none;overflow:visible;margin:auto}
+dialog.video-dlg::backdrop{background:rgba(5,9,20,.9);backdrop-filter:blur(8px)}
+.vd{position:relative;width:min(400px,92vw);padding:6px;border-radius:14px;background:linear-gradient(145deg,var(--oro-claro),var(--oro-osc) 40%,var(--oro-claro) 65%,var(--oro-osc));box-shadow:0 30px 80px rgba(0,0,0,.6);animation:aparece .45s cubic-bezier(.2,.8,.2,1)}
+.vd.especial{background:linear-gradient(145deg,#FFF1C2,#C9A23A 35%,#FFF1C2 55%,#9C7A25)}
+@keyframes aparece{from{transform:perspective(900px) rotateY(-80deg) scale(.8);opacity:0}}
+.vd video{display:block;width:100%;max-height:72vh;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:9px 9px 0 0}
+.vd-info{background:var(--noche);color:var(--hueso);padding:14px 18px;border-radius:0 0 9px 9px;display:flex;align-items:center;gap:14px}
+.vd-info img{height:38px}
+.vd-info h3{font-size:1.6rem}
+.vd-info p{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
+.vd-info .dor{margin-left:auto;font-family:var(--display);font-weight:900;font-size:2.4rem;color:var(--oro-claro);line-height:1}
+.vd .cerrar{position:absolute;top:-16px;right:-16px;margin:0;background:var(--noche);z-index:2}
+
+/* ---------- plantilla (claro) ---------- */
+.fichajes{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-bottom:48px}
+.fichajes figure{position:relative;border-radius:3px;overflow:hidden}
+.fichajes img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
+.fichajes figcaption{position:absolute;left:0;bottom:0;background:var(--noche);color:var(--hueso);font-weight:700;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px}
+.plantilla{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hueso-2);border:1px solid var(--hueso-2)}
+.linea{background:var(--hueso);padding:26px 24px}
+.linea h3{font-size:1.7rem;display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:2px solid var(--carmesi);margin-bottom:6px}
+.linea h3 span{font-size:1rem;color:var(--oro-osc)}
+.linea ul{list-style:none}
+.linea li{padding:9px 0;border-bottom:1px solid var(--hueso-2);font-size:.95rem;font-weight:500}
+.linea li:last-child{border:0}
+.linea li i{font-style:normal;color:var(--gris);font-size:.84rem}
+.staff{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.staff div{background:var(--noche);color:var(--hueso);border-radius:3px;padding:14px 20px}
+.staff b{display:block;font-weight:600}
+.staff span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
+
+/* ---------- historia ---------- */
+.hist-sec{background:var(--noche-2)}
+.hist{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
+.hist .fotos{position:relative;min-height:540px}
+.hist .fotos img{position:absolute;border-radius:2px;border:6px solid var(--hueso);box-shadow:0 24px 50px rgba(0,0,0,.45);object-fit:cover}
+.hist .fotos .f1{width:58%;height:480px;left:0;top:0;transform:rotate(-2deg);object-position:top}
+.hist .fotos .f2{width:56%;height:230px;right:0;top:36px;transform:rotate(2deg)}
+.hist .fotos .f3{width:50%;height:200px;right:4%;bottom:0;transform:rotate(-1deg)}
+.hist h2{font-size:clamp(2.6rem,6vw,4.4rem);margin-top:16px}
+.hist h2 em{font-style:normal;color:var(--oro)}
+.hist>div>p{margin-top:20px;color:var(--claro)}
+.linea-tiempo{list-style:none;margin-top:34px;border-left:1px solid var(--hilo)}
+.linea-tiempo li{padding:0 0 22px 26px;position:relative;color:var(--claro)}
+.linea-tiempo li::before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--noche-2);border:1px solid var(--oro)}
+.linea-tiempo b{font-family:var(--display);font-weight:800;font-size:1.6rem;display:block;line-height:1.1;color:var(--oro-claro)}
+
+/* ---------- galería ---------- */
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;grid-auto-flow:dense;gap:12px}
+.galeria figure{position:relative;overflow:hidden;border-radius:3px;background:var(--noche-2)}
+.galeria img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .6s;filter:saturate(.92)}
+.galeria figure:hover img{transform:scale(1.05);filter:saturate(1.05)}
+.galeria .g{grid-column:span 2;grid-row:span 2}
+.galeria .w{grid-column:span 2}
+.galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;background:linear-gradient(180deg,transparent,rgba(11,18,38,.85));font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--claro)}
+
+/* ---------- Oleo ---------- */
+.patro{padding:0 0 120px}
+.oleo{background:var(--oleo);color:#fff;border-radius:4px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr}
+.oleo .txt{padding:56px}
+.oleo .kicker{color:#EEF5E4}
+.oleo h2{font-size:clamp(2.4rem,5vw,3.8rem);margin:18px 0}
+.oleo p{color:#EEF5E4;max-width:440px}
+.oleo .logo{background:#fff;display:grid;place-items:center;padding:48px}
+.oleo .logo img{width:min(320px,80%)}
+
+/* ---------- pie ---------- */
+footer{background:var(--fondo-pie);color:var(--claro);padding:80px 0 32px;border-top:1px solid var(--hilo)}
+.pie{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.pie h4{color:var(--oro);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px;font-weight:700}
+.pie ul{list-style:none;display:grid;gap:8px;font-size:.92rem}
+.pie a{text-decoration:none;transition:color .2s}
+.pie a:hover{color:var(--oro)}
+.pie .marca b{color:var(--hueso)}
+.pie .oleo-pie{background:#fff;border-radius:3px;padding:12px;display:inline-block}
+.pie .oleo-pie img{height:40px;width:auto}
+.legal{border-top:1px solid var(--hilo-claro);margin-top:48px;padding-top:22px;font-size:.76rem;color:var(--tenue);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ---------- aparición suave ---------- */
+.revela{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.revela.visto{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  nav ul{display:none;position:absolute;top:76px;left:0;right:0;background:var(--noche);flex-direction:column;padding:12px 24px 20px;border-bottom:1px solid var(--hilo)}
+  nav ul.abierto{display:flex}
+  nav a{display:block;padding:14px 0}
+  nav a::after{display:none}
+  .burger{display:block}
+  .hero .wrap{grid-template-columns:1fr}
+  .cats{grid-template-columns:1fr 1fr}
+  .inscribe{grid-template-columns:1fr;padding:0 0 28px}
+  .inscribe>div,.inscribe>a{margin:0 28px}
+  .inscribe img{height:200px}
+  .fichajes{grid-template-columns:1fr}
+  .plantilla{grid-template-columns:1fr 1fr}
+  .hist{grid-template-columns:1fr}
+  .oleo{grid-template-columns:1fr}
+  .oleo .txt{padding:36px}
+  .pie{grid-template-columns:1fr 1fr}
+  .galeria{grid-template-columns:1fr 1fr}
+  .ent.destacada{grid-column:auto}
+  .equipos{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  .wrap{padding:0 16px}
+  .sec{padding:80px 0}
+  .patro{padding-bottom:80px}
+  .marca img{height:42px}
+  .marca b{font-size:1.15rem}
+  .hero{min-height:auto}
+  .hero .wrap{padding-top:120px;padding-bottom:48px;gap:36px}
+  .hero::before{background:linear-gradient(180deg,rgba(11,18,38,.55) 0%,rgba(11,18,38,.85) 45%,var(--noche) 100%)}
+  .cats{grid-template-columns:1fr}
+  .equipos{grid-template-columns:1fr}
+  .cromos{grid-template-columns:repeat(2,1fr);gap:14px}
+  .album-top{padding:14px 16px;gap:12px}
+  .album-top h3{font-size:1.5rem}
+  .album-top img{height:38px}
+  .album-body{padding:16px}
+  .album-plantilla{aspect-ratio:4/3}
+  .jor{grid-template-columns:auto 1fr auto;gap:12px;padding:18px 6px}
+  .jor .j{font-size:1.5rem}
+  .jor .f{grid-column:2;grid-row:1}
+  .jor .cruce{grid-column:1/-1;grid-row:2;font-size:.95rem}
+  .jor .res{grid-row:1;grid-column:3;min-width:70px;font-size:1.1rem}
+  .plantilla{grid-template-columns:1fr}
+  .ent{padding:24px}
+  .ent.destacada{grid-template-columns:1fr}
+  .ent.destacada>img{min-height:240px;max-height:280px}
+  .entrevistas{grid-template-columns:1fr}
+  .ruleta{grid-template-columns:1fr;text-align:center;padding:26px}
+  .ruleta button{margin:0 auto}
+  .tabs{gap:24px}
+  .tabs button{font-size:1.25rem}
+  .pie{grid-template-columns:1fr}
+  .galeria{grid-auto-rows:150px}
+  .hist .fotos{min-height:420px}
+  .hist .fotos .f1{height:380px}
+  .campo{min-height:560px;align-items:flex-end;padding-bottom:48px}
+  .campo::before{background:linear-gradient(0deg,rgba(11,18,38,.97) 55%,rgba(11,18,38,.3) 100%)}
+  .vd .cerrar{top:8px;right:8px}
+}
+@media (prefers-reduced-motion:reduce){.cinta .pista,.estado::before,.vd{animation:none}.revela{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><img src="img/escudo.png" alt="Escudo del Villargordo CF"><span><b>Villargordo C.F.</b><small>Escuela Deportiva</small></span></a>
+    <nav>
+      <button class="burger" aria-label="Abrir menú" onclick="this.nextElementSibling.classList.toggle('abierto')">☰</button>
+      <ul onclick="if(event.target.tagName==='A')this.classList.remove('abierto')">
+        <li><a href="#escuela">Escuela</a></li>
+        <li><a href="#calendario">Calendario</a></li>
+        <li><a href="#entrevistas">Entrevistas</a></li>
+        <li><a href="#cromos">Cromos</a></li>
+        <li><a href="#plantilla">Plantilla</a></li>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#patrocinio">Colabora</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <img src="img/foto-equipo-oliva.jpg" alt="Once titular del Villargordo CF en el Campo Juan Antonio Cañas">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Segunda Andaluza Jaén · Temporada 2026/27</span>
+      <h1>Aquí se juega<br>en <em>casa</em></h1>
+      <p class="lead">Más de 80 años de fútbol en Villargordo. Una escuela donde los peques dan sus primeros toques y un primer equipo que defiende el escudo cada domingo.</p>
+      <div class="btns">
+        <a class="btn btn-rojo" href="#escuela">Apunta a tu hijo/a</a>
+        <a class="btn btn-linea" href="#cromos">Abrir el álbum</a>
+      </div>
+    </div>
+    <aside class="partido" id="proximo" aria-live="polite"></aside>
+  </div>
+</section>
+
+<div class="cinta" aria-label="Con la colaboración de Oleo Telecom">
+  <div class="pista">
+    <span><img src="img/patrocinadores/oleo-blanco.svg" alt="Oleo Telecom"> Con el deporte base de Villargordo</span>
+    <span>Villargordo C.F. · Segunda Andaluza Jaén · Grupo III</span>
+    <span>Campo Municipal Juan Antonio Cañas Martos</span>
+    <span><img src="img/patrocinadores/oleo-blanco.svg" alt="Oleo Telecom"> Con el deporte base de Villargordo</span>
+    <span>Villargordo C.F. · Segunda Andaluza Jaén · Grupo III</span>
+    <span>Campo Municipal Juan Antonio Cañas Martos</span>
+  </div>
+</div>
+
+<!-- ============ ESCUELA ============ -->
+<section class="sec claro" id="escuela">
+  <div class="wrap">
+    <div class="sec-head revela">
+      <div><span class="kicker">La Escuela Deportiva</span><h2>De prebenjamín<br>al <em>primer equipo</em></h2></div>
+      <p>Cada categoría entrena en el Juan Antonio Cañas, con césped nuevo, iluminación renovada y espacios de gimnasio y fisioterapia estrenados en 2026.</p>
+    </div>
+    <div class="cats revela">
+      <article class="cat"><span class="num">01</span><h3>Prebenjamín</h3><p>Primeros toques, juego y compañerismo. Aquí se aprende a querer el balón.</p><span class="edad">6 – 7 años</span></article>
+      <article class="cat"><span class="num">02</span><h3>Benjamín</h3><p>Fútbol 7 y fundamentos técnicos: pase, control, conducción.</p><span class="edad">8 – 9 años</span></article>
+      <article class="cat"><span class="num">03</span><h3>Alevín</h3><p>Fútbol 7 en liga provincial. Primeras nociones de posición y táctica.</p><span class="edad">10 – 11 años</span></article>
+      <article class="cat"><span class="num">04</span><h3>Cadete</h3><p>Salto al fútbol 11. Dos equipos (A y B) para que nadie se quede sin jugar.</p><span class="edad">14 – 15 años</span></article>
+      <article class="cat"><span class="num">05</span><h3>Juvenil</h3><p>La antesala del primer equipo. Competición regional andaluza.</p><span class="edad">16 – 18 años</span></article>
+      <article class="cat"><span class="num">06</span><h3>Senior</h3><p>Primer equipo en Segunda Andaluza Jaén, Grupo III, con Manuel Jiménez en el banquillo.</p><span class="edad">+18 años</span></article>
+    </div>
+    <div class="inscribe revela">
+      <img src="img/prensa/w-producto-local.jpg" alt="Jugadores de la casa posando con la camiseta del Villargordo CF">
+      <div><h3>Inscripciones <em>2026/27</em></h3><p>Escríbenos por Instagram y te contamos horarios, cuotas y equipación de cada categoría.</p></div>
+      <a class="btn btn-rojo" href="https://www.instagram.com/villargordocf/" target="_blank" rel="noopener">Escribir al club</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAMPO ============ -->
+<section class="campo">
+  <img src="img/prensa/w-cesped.jpg" alt="Nuevo césped del Campo Municipal Juan Antonio Cañas Martos" loading="lazy">
+  <div class="wrap revela">
+    <span class="kicker">Nuestra casa</span>
+    <h2>Estrenamos<br><em>césped nuevo</em></h2>
+    <p>El Campo Municipal Juan Antonio Cañas Martos "Josthon" se ha renovado en 2026: césped, iluminación, gimnasio y sala de fisioterapia para todas las categorías.</p>
+    <div class="datos">
+      <div><b>80.000 €</b><span>Inversión Diputación de Jaén</span></div>
+      <div><b>4</b><span>Mejoras: césped, luz, gym y fisio</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDARIO ============ -->
+<section class="sec cal-sec" id="calendario">
+  <div class="wrap">
+    <div class="sec-head revela">
+      <div><span class="kicker">Segunda Andaluza Jaén · Grupo III</span><h2>Calen<em>dario</em></h2></div>
+      <div class="filtros" role="group" aria-label="Filtrar partidos">
+        <button aria-pressed="true" data-f="todos">Todos</button>
+        <button aria-pressed="false" data-f="casa">En casa</button>
+        <button aria-pressed="false" data-f="fuera">Fuera</button>
+      </div>
+    </div>
+    <div class="balance revela" id="balance"></div>
+    <div class="jornadas" id="jornadas"></div>
+    <div class="ver-todo-c"><button class="ver-todo" id="ver-todo" type="button">Ver todas las jornadas</button></div>
+    <p class="nota">Rivales del grupo: Atlético Mengíbar, Recreativo de Bailén, Baños CD 2022, Canena Atlético, CD Realeb, CD Rus EF, UD Guarromán, Ibros CF, CD Los Gachis y Lupión Atlético. El Villargordo descansa en las jornadas 10 y 21. Fechas y horarios sujetos a cambios de la Delegación de Jaén de la RFAF.</p>
+  </div>
+</section>
+
+<!-- ============ ENTREVISTAS ============ -->
+<section class="sec vest" id="entrevistas">
+  <div class="wrap">
+    <div class="sec-head revela">
+      <div><span class="kicker">Entrevistas</span><h2>Vestuario<br><em>abierto</em></h2></div>
+      <p>Las voces del club, de los veteranos a los que acaban de llegar. Grandes y pequeños tienen micro.</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="p-mayores" id="t-mayores">Mayores</button>
+      <button role="tab" aria-selected="false" aria-controls="p-cantera" id="t-cantera">Cantera</button>
+    </div>
+
+    <div class="panel" id="p-mayores" role="tabpanel" aria-labelledby="t-mayores">
+      <div class="entrevistas">
+        <article class="ent destacada">
+          <img src="img/prensa/w-manuel.jpg" alt="Manuel Jiménez, entrenador del Villargordo CF, renovado para la 26/27">
+          <div>
+            <div class="quien"><div><h3>Manuel Jiménez</h3><div class="rol">Entrenador del primer equipo · renovado 26/27</div></div></div>
+            <ol>
+              <li>¿Qué tiene este vestuario que no tenga otro del grupo?</li>
+              <li>Del 2-3 ante el Recre al 1-3 en Lupión: ¿qué cambió?</li>
+              <li>¿Cuántos chavales de la cantera ve subiendo pronto?</li>
+              <li>Un mensaje para la grada del Juan Antonio Cañas.</li>
+            </ol>
+            <div class="estado">Próximamente</div>
+          </div>
+        </article>
+        <article class="ent">
+          <div class="quien"><div class="avatar">C</div><div><h3>El capitán</h3><div class="rol">Primer equipo</div></div></div>
+          <ol>
+            <li>¿Cuándo te pusiste por primera vez esta camiseta?</li>
+            <li>El gol que nunca olvidarás con el Villargordo.</li>
+            <li>¿Qué le dirías a un niño que empieza en la escuela?</li>
+            <li>Ritual antes de cada partido.</li>
+          </ol>
+          <div class="estado">Próximamente</div>
+        </article>
+        <article class="ent">
+          <div class="quien"><div class="avatar"><img src="img/prensa/w-exposicion.jpg" alt=""></div><div><h3>Memoria del club</h3><div class="rol">Exjugadores y directivos históricos</div></div></div>
+          <ol>
+            <li>¿Cómo era jugar en Villargordo hace 40 años?</li>
+            <li>El campeonato de 2015-16 en Tercera Andaluza, contado desde dentro.</li>
+            <li>¿Qué objeto aportaste a la exposición del Museo Cerezo Moreno?</li>
+            <li>El rival que más rabia daba ganar.</li>
+          </ol>
+          <div class="estado">Próximamente</div>
+        </article>
+        <article class="ent">
+          <div class="quien"><div class="avatar">F</div><div><h3>Familias</h3><div class="rol">Madres, padres y abuelos de la grada</div></div></div>
+          <ol>
+            <li>¿Por qué elegisteis la escuela del Villargordo?</li>
+            <li>¿Qué ha aprendido vuestro hijo/a, además de fútbol?</li>
+            <li>El viaje en coche más largo para ver un partido.</li>
+            <li>¿Qué le pediríais al club esta temporada?</li>
+          </ol>
+          <div class="estado">Próximamente</div>
+        </article>
+      </div>
+    </div>
+
+    <div class="panel" id="p-cantera" role="tabpanel" aria-labelledby="t-cantera" hidden>
+      <div class="entrevistas">
+        <article class="ent">
+          <div class="quien">
+            <svg class="camiseta" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 6 8 14l5 12 6-3v35h26V23l6 3 5-12L44 6c-2 5-7 8-12 8s-10-3-12-8Z" fill="#B5122B" stroke="#C9A23A" stroke-width="1.5" stroke-linejoin="round"/><text x="32" y="44" text-anchor="middle" font-family="Big Shoulders Display" font-weight="800" font-size="19" fill="#E6CD85">7</text></svg>
+            <div><h3>Prebenjamines</h3><div class="rol">6 y 7 años · "Mi primer equipo"</div></div>
+          </div>
+          <ol>
+            <li>¿Cómo se llama tu mejor amigo del equipo?</li>
+            <li>¿Has metido ya algún gol? ¡Cuéntanoslo!</li>
+            <li>Si fueras un animal, ¿qué jugador serías?</li>
+            <li>¿Qué te gusta más: chutar o la merienda de después?</li>
+          </ol>
+          <div class="estado">Grabación pendiente</div>
+        </article>
+        <article class="ent">
+          <div class="quien">
+            <svg class="camiseta" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 6 8 14l5 12 6-3v35h26V23l6 3 5-12L44 6c-2 5-7 8-12 8s-10-3-12-8Z" fill="#F5F1E8" stroke="#C9A23A" stroke-width="1.5" stroke-linejoin="round"/><text x="32" y="44" text-anchor="middle" font-family="Big Shoulders Display" font-weight="800" font-size="19" fill="#2B4C7F">9</text></svg>
+            <div><h3>Benjamines</h3><div class="rol">8 y 9 años · "Pequeños cracks"</div></div>
+          </div>
+          <ol>
+            <li>¿En qué posición juegas y por qué te gusta?</li>
+            <li>¿Quién es tu ídolo del primer equipo del Villargordo?</li>
+            <li>Dibuja (o explica) tu celebración de gol.</li>
+            <li>¿Qué es lo más difícil de jugar al fútbol?</li>
+          </ol>
+          <div class="estado">Grabación pendiente</div>
+        </article>
+        <article class="ent">
+          <div class="quien">
+            <svg class="camiseta" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 6 8 14l5 12 6-3v35h26V23l6 3 5-12L44 6c-2 5-7 8-12 8s-10-3-12-8Z" fill="#2B4C7F" stroke="#C9A23A" stroke-width="1.5" stroke-linejoin="round"/><text x="32" y="44" text-anchor="middle" font-family="Big Shoulders Display" font-weight="800" font-size="19" fill="#E6CD85">10</text></svg>
+            <div><h3>Alevines</h3><div class="rol">10 y 11 años · "Ya somos mayores"</div></div>
+          </div>
+          <ol>
+            <li>¿Qué te ha enseñado tu entrenador que no sabías?</li>
+            <li>El partido más emocionante de la temporada.</li>
+            <li>¿Te imaginas jugando en el primer equipo? ¿Con qué dorsal?</li>
+            <li>Un consejo para los que empiezan en prebenjamín.</li>
+          </ol>
+          <div class="estado">Grabación pendiente</div>
+        </article>
+      </div>
+
+      <div class="ruleta">
+        <button id="girar" aria-label="Sacar una pregunta al azar">Gira</button>
+        <div><small>La ruleta de preguntas · para grabar en el campo</small><div class="preg" id="pregunta">Pulsa la ruleta y saca una pregunta sorpresa</div></div>
+      </div>
+      <p class="aviso">Las entrevistas a menores solo se publican con la autorización firmada de su madre, padre o tutor. Mostramos el nombre de pila y la categoría, nunca apellidos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÁLBUM DE CROMOS ============ -->
+<section class="sec album-sec" id="cromos">
+  <div class="wrap">
+    <div class="sec-head revela">
+      <div><span class="kicker">Temporada 2026/27</span><h2>El álbum<br><em>de cromos</em></h2></div>
+      <div>
+        <p>Cada equipo tiene su cromo de plantilla. Ábrelo y encontrarás el cromo de cada jugador y jugadora, como los de toda la vida.</p>
+        <span class="video-pista"><i>▶</i> Los cromos con este sello hablan: púlsalos y el jugador se presenta en vídeo.</span>
+      </div>
+    </div>
+    <div class="equipos revela" id="equipos"></div>
+  </div>
+</section>
+
+<dialog class="album" id="album" aria-labelledby="album-titulo"></dialog>
+<dialog class="video-dlg" id="video-dlg" aria-label="Vídeo de presentación"></dialog>
+
+<!-- ============ PLANTILLA ============ -->
+<section class="sec claro" id="plantilla">
+  <div class="wrap">
+    <div class="sec-head revela">
+      <div><span class="kicker">Primer equipo · 2026/27</span><h2>La <em>plantilla</em></h2></div>
+      <p>Producto local y gente de la comarca. El grupo que se ganó el Trofeo Santiago 2026 ante el Campillo del Río (2-1).</p>
+    </div>
+    <div class="fichajes revela">
+      <figure><img src="img/prensa/w-renovaciones.jpg" alt="Jugadores renovados del Villargordo CF para la temporada 26/27" loading="lazy"><figcaption>Renovados 26/27</figcaption></figure>
+      <figure><img src="img/prensa/w-fichajes.jpg" alt="Renovaciones y fichaje de septiembre 2026" loading="lazy"><figcaption>Últimas incorporaciones</figcaption></figure>
+    </div>
+    <div class="plantilla revela">
+      <div class="linea"><h3>Porteros <span>03</span></h3><ul><li>Jesús M. Berrio</li><li>Francisco Martos <i>"Rodri"</i></li><li>Juan Moreno <i>"Viúdez"</i></li></ul></div>
+      <div class="linea"><h3>Defensas <span>07</span></h3><ul><li>Álex Tirado</li><li>Rubén Moreno <i>"Camacho"</i></li><li>Juan García <i>"Carrasco"</i></li><li>Alberto Moral</li><li>David Montoro</li><li>Mario González</li><li>José Luis Pérez <i>"Rayo I"</i></li></ul></div>
+      <div class="linea"><h3>Medios <span>06</span></h3><ul><li>F. Javier Iglesias <i>"Francis"</i></li><li>Jorge Cobo</li><li>José Pérez <i>"Joseliyo"</i></li><li>Manuel Del Moral</li><li>Óscar Navarro</li><li>Pablo Jiménez</li></ul></div>
+      <div class="linea"><h3>Delanteros <span>08</span></h3><ul><li>Álvaro Pérez</li><li>Carlos Campos</li><li>Cristian Cañas</li><li>Humberto González</li><li>Juan F. Moral <i>"Juanfra"</i></li><li>Juanjo Castro</li><li>Luis Elvira</li><li>Rafael Daoiz <i>"Rafa"</i></li></ul></div>
+    </div>
+    <div class="staff">
+      <div><b>Manuel José Jiménez</b><span>Entrenador</span></div>
+      <div><b>José Antonio Molina</b><span>Entrenador auxiliar</span></div>
+      <div><b>Sebastián Rodríguez</b><span>Delegado de equipo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORIA ============ -->
+<section class="sec hist-sec" id="historia">
+  <div class="wrap hist">
+    <div class="fotos revela">
+      <img class="f1" src="img/prensa/w-exposicion.jpg" alt="Cartel de la exposición Villargordo CF: un club con historia, con fotos de equipos antiguos" loading="lazy">
+      <img class="f2" src="img/campo-villatorres.jpg" alt="Placa del Campo de Fútbol Municipal Juan Antonio Cañas Martos" loading="lazy">
+      <img class="f3" src="img/prensa/w-trofeo-alcalde.jpg" alt="Jugadores del Villargordo CF con el Trofeo Alcalde 2025" loading="lazy">
+    </div>
+    <div class="revela">
+      <span class="kicker">Nuestra historia</span>
+      <h2>Más de 80 años<br>de fútbol <em>en el pueblo</em></h2>
+      <p>El escudo lo cuenta todo: el rojo y los castillos dorados, los escuditos azules y la corona de laurel. Una camiseta que generaciones de villargordeños han defendido en el mismo campo.</p>
+      <ul class="linea-tiempo">
+        <li><b>1997-98</b>Campeones de Primera Regional Jaén.</li>
+        <li><b>2002-03</b>Campeones de Primera Provincial Jaén.</li>
+        <li><b>2015-16</b>Campeones de Tercera Andaluza y ascenso a Segunda.</li>
+        <li><b>2026</b>Césped nuevo en el Juan Antonio Cañas y exposición «Villargordo CF: un club con historia» en el Museo Cerezo Moreno.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head revela">
+      <div><span class="kicker">Desde nuestras redes</span><h2>Gale<em>ría</em></h2></div>
+      <a class="btn btn-linea" href="https://www.instagram.com/villargordocf/" target="_blank" rel="noopener">Síguenos @villargordocf</a>
+    </div>
+    <div class="galeria">
+      <figure class="g"><img src="img/foto-equipo-atardecer.jpg" alt="Once del Villargordo CF al atardecer" loading="lazy"><figcaption>Foto: @Andrea.Oya</figcaption></figure>
+      <figure class="w"><img src="img/prensa/w-trofeo-santiago.jpg" alt="Entrega del Trofeo Santiago 2026 en el Juan Antonio Cañas" loading="lazy"><figcaption>Trofeo Santiago 2026</figcaption></figure>
+      <figure><img src="img/foto-equipo-visitante.jpg" alt="Equipo y cuerpo técnico en un desplazamiento" loading="lazy"></figure>
+      <figure><img src="img/ig/ig9.jpg" alt="Cartel Trofeo Alcalde Villatorres" loading="lazy"></figure>
+      <figure><img src="img/ig/ig12.jpg" alt="Cartel Copa Presidente ante el Baeza CF" loading="lazy"></figure>
+      <figure class="w"><img src="img/prensa/w-trofeo-alcalde.jpg" alt="Capitanes del Villargordo CF levantan el Trofeo Alcalde" loading="lazy"><figcaption>Trofeo Alcalde</figcaption></figure>
+      <figure><img src="img/foto-equipo-blanco.jpg" alt="Plantilla del Villargordo CF con la equipación blanca" loading="lazy"></figure>
+      <figure><img src="img/ig/ig3.jpg" alt="Cartel partido Villargordo CF contra CD Alcalá Enjoy" loading="lazy"></figure>
+      <figure><img src="img/ig/ig7.jpg" alt="Cartel amistoso Villargordo CF contra Atlético Jaén" loading="lazy"></figure>
+      <figure><img src="img/ig/ig8.jpg" alt="Cartel Trofeo Alcalde ante el CD Jabalquinto" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATROCINIO ============ -->
+<section class="patro" id="patrocinio">
+  <div class="wrap">
+    <div class="oleo revela">
+      <div class="txt">
+        <span class="kicker">Con la cantera</span>
+        <h2>Oleo Telecom<br>juega con la cantera</h2>
+        <p>En Oleo Telecom queremos que los niños y niñas de Villargordo sigan creciendo con un balón en los pies. Telefonía, fibra y energía de la tierra, para la gente de la tierra.</p>
+      </div>
+      <div class="logo"><img src="img/patrocinadores/oleo-color.svg" alt="Logotipo de Oleo Telecom"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="pie">
+      <div>
+        <a class="marca" href="#inicio"><img src="img/escudo.png" alt=""><span><b>Villargordo C.F.</b><small>Escuela Deportiva</small></span></a>
+        <p style="margin-top:18px;font-size:.88rem">Campo Municipal Juan Antonio Cañas Martos "Josthon"<br>C/ José Alcalde Siles, 10 · Villargordo, Villatorres (Jaén)</p>
+      </div>
+      <div><h4>Club</h4><ul><li><a href="#escuela">Escuela</a></li><li><a href="#calendario">Calendario</a></li><li><a href="#entrevistas">Entrevistas</a></li><li><a href="#cromos">Álbum de cromos</a></li></ul></div>
+      <div><h4>Redes</h4><ul><li><a href="https://www.instagram.com/villargordocf/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/villargordocf" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://twitter.com/VillargordoCF" target="_blank" rel="noopener">X / Twitter</a></li></ul></div>
+      <div><h4>Colabora</h4><div class="oleo-pie"><img src="img/patrocinadores/oleo-color.svg" alt="Oleo Telecom"></div></div>
+    </div>
+    <div class="legal"><span>© 2026 Villargordo Club de Fútbol · AND-7040</span><span>Fotos: @villargordocf y Albero y Mikasa · Web hecha con Oleo Telecom</span></div>
+  </div>
+</footer>
+
+<script src="cromos-render.js?v=2"></script>
+<script>
+/* ===== Álbum de cromos (los datos se gestionan desde club.html) ===== */
+(async function(){
+  const { esc, cuenta, total, cromo, tieneVideo } = Cromos;
+  let EQUIPOS;
+  try { EQUIPOS = (await (await fetch("cromos.json", { cache: "no-store" })).json()).equipos; }
+  catch { document.getElementById("equipos").innerHTML = `<p>El álbum no está disponible ahora mismo.</p>`; return; }
+
+  const fotoEquipo = (eq, grande) => eq.foto
+    ? `<img class="foto" src="${esc(eq.foto)}" alt="Plantilla ${esc(eq.nombre)} del Villargordo CF" loading="lazy">`
+    : `<div class="vacia"><div><img src="img/escudo.png" alt="">${grande ? "La foto de la plantilla llegará pronto" : "Foto de plantilla próximamente"}</div></div>`;
+
+  document.getElementById("equipos").innerHTML = EQUIPOS.map((eq, i) => {
+    const t = total(eq), c = cuenta(eq);
+    return `<button class="equipo" style="--c:${eq.color}" data-eq="${eq.id}" aria-label="Abrir el álbum de ${esc(eq.nombre)}">
+      <div class="marco">${fotoEquipo(eq)}<span class="num">Nº ${String(i + 1).padStart(2, "0")}</span><span class="franja-eq">${esc(eq.nombre)}</span></div>
+      <div class="pie-eq"><span>${esc(eq.edad)} · ${c}/${t} cromos</span><span class="abrir">Abrir álbum →</span></div>
+      <div class="barra"><i style="width:${t ? c / t * 100 : 0}%"></i></div>
+    </button>`;
+  }).join("");
+
+  const dlg = document.getElementById("album");
+  const vdlg = document.getElementById("video-dlg");
+  let eqAbierto = null;
+
+  function abre(id){
+    const eq = eqAbierto = EQUIPOS.find(e => e.id === id);
+    const t = total(eq), c = cuenta(eq);
+    const huecos = Array.from({length: t}, (_, k) => eq.jugadores[k] || null);
+    const nVideos = eq.jugadores.filter(j => tieneVideo(eq, j)).length;
+    dlg.style.setProperty("--c", eq.color);
+    dlg.innerHTML = `
+      <div class="album-top"><img src="img/escudo.png" alt=""><div><h3 id="album-titulo">${esc(eq.nombre)}</h3><small>${esc(eq.categoria)} · ${esc(eq.edad)} · 2026/27</small></div>
+        <button class="cerrar" aria-label="Cerrar álbum">✕</button></div>
+      <div class="album-body">
+        <div class="album-plantilla">${fotoEquipo(eq, true)}</div>
+        <div class="progreso"><span>${c} de ${t} cromos</span><div class="barra"><i style="width:${t ? c / t * 100 : 0}%"></i></div><span>${t ? Math.round(c / t * 100) : 0}%</span></div>
+        ${eq.menores ? `<div class="aviso-menores">🔒 Equipo de menores: cada cromo solo aparece cuando su familia ha firmado la autorización. Mostramos únicamente el nombre de pila.</div>` : ""}
+        ${nVideos ? `<p class="leyenda">▶ ${nVideos === 1 ? "Hay 1 cromo con vídeo" : `Hay ${nVideos} cromos con vídeo`}. Púlsalo para verlo.</p>` : ""}
+        <div class="cromos">${huecos.map((j, k) => cromo(eq, j, k)).join("")}</div>
+      </div>`;
+    dlg.querySelector(".cerrar").onclick = () => dlg.close();
+    dlg.showModal();
+    dlg.scrollTop = 0;
+  }
+
+  function verVideo(k){
+    const eq = eqAbierto, j = eq && eq.jugadores[k];
+    if (!j || !tieneVideo(eq, j)) return;
+    vdlg.innerHTML = `<div class="vd ${j.especial ? "especial" : ""}">
+      <button class="cerrar" aria-label="Cerrar vídeo">✕</button>
+      <video src="${esc(j.video)}" poster="${esc(j.foto)}" controls autoplay playsinline preload="metadata"></video>
+      <div class="vd-info"><img src="img/escudo.png" alt=""><div><h3>${esc(j.nombre)}</h3><p>${esc(j.posicion || eq.nombre)} · ${esc(eq.nombre)}</p></div>${j.dorsal != null ? `<span class="dor">${esc(j.dorsal)}</span>` : ""}</div>
+    </div>`;
+    vdlg.querySelector(".cerrar").onclick = () => vdlg.close();
+    vdlg.showModal();
+  }
+  vdlg.addEventListener("close", () => { const v = vdlg.querySelector("video"); if (v) { v.pause(); v.removeAttribute("src"); v.load(); } vdlg.innerHTML = ""; });
+  vdlg.addEventListener("click", e => { if (e.target === vdlg) vdlg.close(); });
+
+  dlg.addEventListener("click", e => {
+    if (e.target === dlg) return dlg.close();
+    const c = e.target.closest("[data-video]");
+    if (c) verVideo(+c.dataset.video);
+  });
+  dlg.addEventListener("keydown", e => {
+    const c = e.target.closest && e.target.closest("[data-video]");
+    if (c && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); verVideo(+c.dataset.video); }
+  });
+  document.querySelectorAll(".equipo").forEach(b => b.onclick = () => abre(b.dataset.eq));
+})();
+
+/* ===== Calendario: edita aquí resultados y nuevas jornadas =====
+   gf/gc = goles a favor / en contra (null si no se conoce)
+   r = "V" | "E" | "D" si se sabe el resultado pero no el marcador */
+const JORNADAS = [
+  // Primera vuelta
+  {j:1,  fecha:"2026-09-13", hora:"20:00", rival:"Recreativo de Bailén CF", casa:true,  campo:"Juan Antonio Cañas", gf:2, gc:3},
+  {j:2,  fecha:"2026-09-20", hora:"20:30", rival:"CD Realeb",               casa:true,  campo:"Juan Antonio Cañas", gf:2, gc:2},
+  {j:3,  fecha:"2026-09-27", hora:"18:30", rival:"Ibros CF",                casa:false, campo:"Fernández Martínez (Ibros)", gf:0, gc:3},
+  {j:4,  fecha:"2026-10-04", hora:"",      rival:"UD Guarromán",            casa:true,  campo:"Juan Antonio Cañas", gf:1, gc:0},
+  {j:5,  fecha:"2026-10-11", hora:"",      rival:"Lupión Atlético CF",      casa:false, campo:"Los Juanitos (Begíjar)", gf:3, gc:1},
+  {j:6,  fecha:"2026-10-18", hora:"18:00", rival:"CD Canena Atlético",      casa:true,  campo:"Juan Antonio Cañas", gf:1, gc:1},
+  {j:7,  fecha:"2026-10-25", hora:"18:00", rival:"CD Los Gachis",           casa:false, campo:"San José (Linares)", gf:2, gc:1},
+  {j:8,  fecha:"2026-11-02", hora:"17:30", rival:"CD Rus EF",               casa:true,  campo:"Juan Antonio Cañas", gf:5, gc:1},
+  {j:9,  fecha:"2026-11-08", hora:"18:00", rival:"Baños CD 2022",           casa:false, campo:"Baños de la Encina"},
+  // J10: descansa el Villargordo
+  {j:11, fecha:"2026-11-22", hora:"",      rival:"CD Atlético Mengíbar",    casa:true,  campo:"Juan Antonio Cañas"},
+  // Segunda vuelta
+  {j:12, fecha:"2026-11-29", hora:"",      rival:"Recreativo de Bailén CF", casa:false, campo:""},
+  {j:13, fecha:"2026-12-13", hora:"",      rival:"CD Realeb",               casa:false, campo:"Los Juanitos (Begíjar)"},
+  {j:14, fecha:"2027-01-10", hora:"",      rival:"Ibros CF",                casa:true,  campo:"Juan Antonio Cañas"},
+  {j:15, fecha:"2027-01-17", hora:"",      rival:"UD Guarromán",            casa:false, campo:"Guarromán"},
+  {j:16, fecha:"2027-01-24", hora:"",      rival:"Lupión Atlético CF",      casa:true,  campo:"Juan Antonio Cañas"},
+  {j:17, fecha:"2027-01-31", hora:"",      rival:"CD Canena Atlético",      casa:false, campo:"Canena"},
+  {j:18, fecha:"2027-02-07", hora:"",      rival:"CD Los Gachis",           casa:true,  campo:"Juan Antonio Cañas"},
+  {j:19, fecha:"2027-02-14", hora:"",      rival:"CD Rus EF",               casa:false, campo:"Rus"},
+  {j:20, fecha:"2027-02-21", hora:"",      rival:"Baños CD 2022",           casa:true,  campo:"Juan Antonio Cañas"},
+  // J21: descansa el Villargordo
+  {j:22, fecha:"2027-03-14", hora:"",      rival:"CD Atlético Mengíbar",    casa:false, campo:"Ramón Díaz López (Mengíbar)"},
+];
+
+const fmt = d => new Date(d+"T12:00").toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"});
+const hoy = new Date(); hoy.setHours(0,0,0,0);
+const resultado = p => {
+  // el marcador se escribe en el orden local – visitante; el color dice si ganó el Villargordo
+  if (p.gf!=null) return {c: p.gf>p.gc?"V":p.gf<p.gc?"D":"E", t: p.casa===false ? `${p.gc} – ${p.gf}` : `${p.gf} – ${p.gc}`};
+  if (p.r) return {c:p.r, t:{V:"Victoria",E:"Empate",D:"Derrota"}[p.r]};
+  return null;
+};
+const proximo = JORNADAS.find(p => new Date(p.fecha+"T23:59") >= hoy && !resultado(p));
+
+/* Balance de la temporada */
+(function(){
+  const jug = JORNADAS.filter(p => p.gf != null);
+  if (!jug.length) return;
+  const n = c => jug.filter(p => resultado(p).c === c).length;
+  const gf = jug.reduce((s,p) => s + p.gf, 0), gc = jug.reduce((s,p) => s + p.gc, 0);
+  const ult = jug.slice(-5).map(p => `<i class="${resultado(p).c}" title="J${p.j}">${resultado(p).c}</i>`).join("");
+  document.getElementById("balance").innerHTML =
+    [[jug.length,"Jugados"],[n("V"),"Victorias"],[n("E"),"Empates"],[n("D"),"Derrotas"],[`${gf}<small>–${gc}</small>`,"Goles"]]
+      .map(([v,t]) => `<div><b>${v}</b><span>${t}</span></div>`).join("") +
+    `<div class="racha"><span>Últimos partidos</span><p>${ult}</p></div>`;
+})();
+
+let verTodo = false;
+function pinta(filtro){
+  const cont = document.getElementById("jornadas");
+  let lista = JORNADAS.filter(p => filtro==="todos" || (filtro==="casa" ? p.casa===true : p.casa===false));
+  const mas = document.getElementById("ver-todo");
+  if (filtro==="todos" && !verTodo){
+    const i = Math.max(0, proximo ? JORNADAS.indexOf(proximo) : JORNADAS.length);
+    lista = JORNADAS.slice(Math.max(0, i-3), i+3);
+  }
+  mas.hidden = filtro!=="todos";
+  mas.textContent = verTodo ? "Ver menos" : `Ver las ${JORNADAS.length} jornadas`;
+  cont.innerHTML = lista
+    .map(p => {
+      const res = resultado(p);
+      const pasado = new Date(p.fecha+"T23:59") < hoy;
+      const local = p.casa===false ? p.rival : "Villargordo CF";
+      const visit = p.casa===false ? "Villargordo CF" : p.rival;
+      const marca = n => n==="Villargordo CF" ? `<span class="nos">${n}</span>` : n;
+      const cruce = p.casa===null ? `<span class="nos">Villargordo CF</span> · ${p.rival}` : `${marca(local)} – ${marca(visit)}`;
+      const chip = res ? `<span class="res ${res.c}">${res.t}</span>`
+        : `<span class="res P">${pasado ? "Por confirmar" : (p===proximo ? "Próximo" : "Pendiente")}</span>`;
+      return `<div class="jor ${p===proximo?"prox":""}">
+        <span class="j">J${p.j}</span>
+        <span class="f">${fmt(p.fecha)}<small>${p.hora ? p.hora+" h" : "Hora por confirmar"}</small></span>
+        <span class="cruce">${cruce}${p.casa?'<span class="casa">CASA</span>':""}<small>${p.campo||"Campo por confirmar"}</small></span>
+        ${chip}</div>`;
+    }).join("");
+}
+pinta("todos");
+document.getElementById("ver-todo").onclick = () => {
+  verTodo = !verTodo; pinta("todos");
+  if (!verTodo) document.getElementById("calendario").scrollIntoView({behavior:"smooth"});
+};
+document.querySelectorAll(".filtros button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".filtros button").forEach(x => x.setAttribute("aria-pressed", x===b));
+  pinta(b.dataset.f);
+});
+
+/* Tarjeta de próximo partido en la portada */
+(function(){
+  const el = document.getElementById("proximo");
+  if (!proximo){ el.innerHTML = `<span class="tag">Temporada 2026/27</span><p style="margin-top:12px;color:var(--claro)">El calendario de las próximas jornadas se publicará muy pronto.</p>`; return; }
+  const p = proximo, nos = `<div class="eq"><img src="img/escudo.png" alt="">Villargordo</div>`;
+  const sig = p.rival.split(/\s+/).filter(w => !/^(CD|UD|CF|EF|SD|AD|de|del|la|\d+)$/i.test(w));
+  const ini = (sig.length > 1 ? sig[0][0] + sig[1][0] : (sig[0] || "?").slice(0, 2)).toUpperCase();
+  const ellos = `<div class="eq"><div class="rival-ico">${ini}</div>${p.rival.replace("Rival por confirmar","Por confirmar")}</div>`;
+  el.innerHTML = `<span class="tag">Próximo partido · Jornada ${p.j}</span>
+    <div class="vs">${p.casa===false ? ellos+'<span class="x">VS</span>'+nos : nos+'<span class="x">VS</span>'+ellos}</div>
+    <div class="info"><span>${fmt(p.fecha)} · ${p.hora ? p.hora+" h" : "hora por confirmar"}</span><span>${p.campo||"Campo por confirmar"}</span></div>
+    <div class="cuenta" id="cuenta"></div>`;
+  const objetivo = new Date(`${p.fecha}T${p.hora||"18:00"}:00`);
+  const tic = () => {
+    let s = Math.max(0, (objetivo - new Date())/1000);
+    const d = Math.floor(s/86400), h = Math.floor(s%86400/3600), m = Math.floor(s%3600/60);
+    document.getElementById("cuenta").innerHTML = [[d,"días"],[h,"horas"],[m,"min"]].map(([n,t])=>`<div><b>${String(n).padStart(2,"0")}</b><span>${t}</span></div>`).join("");
+  };
+  tic(); setInterval(tic, 30000);
+})();
+
+/* Pestañas de entrevistas */
+document.querySelectorAll('[role="tab"]').forEach(t => t.onclick = () => {
+  document.querySelectorAll('[role="tab"]').forEach(x => {
+    x.setAttribute("aria-selected", x===t);
+    document.getElementById(x.getAttribute("aria-controls")).hidden = x!==t;
+  });
+});
+
+/* Ruleta de preguntas para los peques */
+const PREGUNTAS = [
+  "¿Qué superpoder te gustaría tener en un partido?",
+  "¿Con qué jugador del Villargordo te cambiarías un día?",
+  "Imita la celebración de gol de tu ídolo",
+  "¿Qué le dirías al árbitro si fueras tú el árbitro?",
+  "¿Cuál es el mejor bocadillo para después de entrenar?",
+  "Si el balón hablara, ¿qué te diría?",
+  "¿Quién es el más gracioso del equipo?",
+  "¿Qué es lo primero que haces al llegar al campo?",
+  "Cuéntanos tu jugada favorita en tres palabras",
+  "¿Qué quieres ser de mayor, además de futbolista?",
+];
+let giros = 0;
+document.getElementById("girar").onclick = e => {
+  giros++; e.currentTarget.style.transform = `rotate(${giros*720}deg)`;
+  const q = document.getElementById("pregunta");
+  setTimeout(() => q.textContent = PREGUNTAS[Math.floor(Math.random()*PREGUNTAS.length)], 450);
+};
+
+/* Aparición suave al hacer scroll */
+(function(){
+  const els = document.querySelectorAll(".revela");
+  if (!("IntersectionObserver" in window)) return els.forEach(e => e.classList.add("visto"));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visto"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+</body>
+</html>
