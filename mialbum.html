@@ -389,6 +389,8 @@ const q = new URLSearchParams(location.search);
 if (q.has("reset")) { estado = JSON.parse(JSON.stringify(INICIAL)); guarda(); pinta(); }
 if (q.get("ver")==="sobre") abreSobre();
 if (q.get("ver")==="abierto") { abreSobre(); rasga(); }
+if (q.get("ver")==="revelado") { abreSobre(); document.querySelectorAll(".sobre,.carta,.mensaje").forEach(e=>e.style.transition="none");
+  document.getElementById("sobre").className="sobre abierto fuera"; document.getElementById("carta").classList.add("sube"); document.getElementById("toca").style.display="none"; revela(); }
 if (q.get("ver")==="habla") { const id=q.get("id")||"hugo"; abreHabla(id); }
 </script>
 </body>
