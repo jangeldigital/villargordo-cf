@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi álbum · Villargordo C.F. (demostración)</title>
+<meta name="description" content="Demostración del álbum digital de cromos del Villargordo C.F.: sobres que se abren en el móvil y cromos que hablan. Personajes inventados.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B1226">
+<link rel="icon" href="img/escudo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cromos.css?v=2">
+<style>
+:root{--noche:#0B1226;--noche-2:#121B38;--carmesi:#B5122B;--oro:#C9A23A;--oro-claro:#E6CD85;--hueso:#F5F1E8;--claro:#AEB6CC;--hilo:rgba(201,162,58,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Inter Tight",system-ui,sans-serif;background:var(--noche);color:var(--hueso);min-height:100vh;
+  background-image:radial-gradient(90% 50% at 50% -10%,rgba(181,18,43,.35),transparent 70%)}
+button{font-family:inherit;cursor:pointer}
+.app{max-width:520px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px 40px}
+.aviso-demo{display:flex;gap:8px;align-items:center;justify-content:center;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro-claro);border:1px dashed var(--hilo);border-radius:3px;padding:7px 10px;margin-bottom:18px;text-align:center}
+.cab{display:flex;align-items:center;gap:14px}
+.cab img{height:52px}
+.cab small{display:block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro)}
+.cab h1{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-size:2.2rem;line-height:.95;text-transform:uppercase}
+.cab h1 em{font-style:normal;color:var(--oro-claro)}
+.progreso{margin:20px 0 6px;display:flex;justify-content:space-between;font-size:.8rem;color:var(--claro)}
+.progreso b{color:var(--hueso);font-weight:700}
+.barra{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--oro),var(--oro-claro));border-radius:3px;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.sobres{margin:22px 0;padding:18px;border:1px solid var(--hilo);border-radius:6px;background:rgba(255,255,255,.03);display:flex;gap:16px;align-items:center}
+.mini-sobre{flex:none;width:58px;height:78px;border-radius:5px;position:relative;background:linear-gradient(145deg,#E6CD85,#9C7A25 45%,#F3DE9C 70%,#8F7024);box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.mini-sobre::before{content:"";position:absolute;inset:4px;border-radius:3px;border:1px solid rgba(11,18,38,.35)}
+.mini-sobre img{position:absolute;left:50%;top:50%;width:30px;transform:translate(-50%,-50%)}
+.mini-sobre span{position:absolute;top:-8px;right:-8px;min-width:24px;height:24px;border-radius:12px;background:var(--carmesi);color:#fff;font-weight:700;font-size:.8rem;display:grid;place-items:center;padding:0 6px;border:2px solid var(--noche)}
+.sobres h2{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1.05}
+.sobres p{font-size:.82rem;color:var(--claro);margin-top:4px;line-height:1.4}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:3px;padding:14px 20px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.btn.oro{background:var(--oro);color:var(--noche)}
+.btn.oro:active{transform:scale(.98)}
+.btn.linea{background:none;border:1px solid var(--hilo);color:var(--oro-claro)}
+.sobres .btn{margin-top:12px}
+.rejilla{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rejilla .cromo .nombre b{font-size:.95rem}
+.rejilla .cromo .nombre span{font-size:.5rem;letter-spacing:.12em}
+.rejilla .cromo .esc{height:20px}
+.rejilla .cromo .play{width:38px;height:38px;margin:-19px 0 0 -19px}
+.cromo .foto svg{width:100%;height:100%;display:block}
+.cromo .nombre b{line-height:1.12;padding-top:2px}
+.cromo.nuevo{animation:brilla 1.4s ease-out 2}
+@keyframes brilla{0%{box-shadow:0 0 0 0 rgba(230,205,133,.9)}100%{box-shadow:0 0 0 18px rgba(230,205,133,0)}}
+.cromo.hueco .nombre b{font-size:.85rem}
+.tit-sec{display:flex;justify-content:space-between;align-items:baseline;margin:30px 0 14px}
+.tit-sec h2{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em}
+.tit-sec span{font-size:.72rem;color:var(--claro)}
+.historial{list-style:none;border-top:1px solid var(--hilo)}
+.historial li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--hilo);font-size:.84rem}
+.historial li b{color:var(--hueso)}
+.historial li span{color:var(--claro);text-align:right;flex:none}
+.historial .etq{display:inline-block;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-right:6px;background:rgba(201,162,58,.16);color:var(--oro-claro)}
+.reglas{margin-top:14px;font-size:.78rem;line-height:1.55;color:var(--claro)}
+.pie{margin-top:34px;padding-top:20px;border-top:1px solid var(--hilo);display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:.72rem;color:var(--claro)}
+.pie img{height:26px}
+.pie button{background:none;border:0;color:var(--oro);font-size:.72rem;text-decoration:underline}
+
+/* capa de sobre y de vídeo */
+.capa{position:fixed;inset:0;z-index:50;background:rgba(5,9,20,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:24px;overflow:hidden}
+.capa.on{display:flex}
+.cerrar{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--hilo);background:none;color:var(--hueso);font-size:1.3rem}
+.escena{position:relative;width:240px;height:336px;perspective:1100px}
+.sobre{position:absolute;inset:0;border-radius:10px;cursor:pointer;z-index:3;transition:transform .8s cubic-bezier(.5,-.3,.6,1.3),opacity .5s .5s;
+  background:linear-gradient(145deg,#F3DE9C,#B08A2C 30%,#FFF1C2 52%,#9C7A25 76%,#E6CD85);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.sobre::before{content:"";position:absolute;inset:8px;border-radius:6px;border:1.5px solid rgba(11,18,38,.3)}
+.sobre .tira{position:absolute;left:0;right:0;top:0;height:56px;border-radius:10px 10px 0 0;background:linear-gradient(145deg,#FFF1C2,#C9A23A);border-bottom:2px dashed rgba(11,18,38,.35);transform-origin:100% 0;transition:transform .55s cubic-bezier(.6,0,.4,1),opacity .55s}
+.sobre .cara{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--noche);text-align:center;padding:52px 20px 78px}
+.sobre .cara img.esc{width:78px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.sobre .cara b{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-size:1.7rem;text-transform:uppercase;line-height:.95}
+.sobre .cara small{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.sobre .colab{position:absolute;left:18px;right:18px;bottom:14px;padding-top:10px;border-top:1px solid rgba(11,18,38,.25);display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--noche);font-weight:700}
+.sobre .colab img{height:26px}
+.sobre.temblor{animation:tiembla .5s ease-in-out infinite}
+@keyframes tiembla{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.sobre.abierto .tira{transform:rotate(-24deg) translate(30px,-90px);opacity:0}
+.sobre.fuera{transform:translateY(130%) rotate(6deg);opacity:0}
+.carta{position:absolute;inset:0;z-index:2;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.carta.sube{transform:translateY(-6%) rotateY(180deg) scale(1.06)}
+.carta .dorso,.carta .frente{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.carta .dorso{border-radius:10px;background:radial-gradient(circle at 50% 40%,#1c2a55,var(--noche) 70%);border:3px solid var(--oro);display:grid;place-items:center}
+.carta .dorso img{width:96px;opacity:.9}
+.carta .frente{transform:rotateY(180deg)}
+.carta .frente .cromo{width:100%;height:100%}
+.carta .frente .cromo .nombre b{font-size:1.6rem}
+.carta .frente .cromo .nombre span{font-size:.7rem}
+.mensaje{margin-top:26px;text-align:center;min-height:120px;opacity:0;transform:translateY(10px);transition:all .5s}
+.mensaje.on{opacity:1;transform:none}
+.mensaje .nuevo{display:inline-block;background:var(--carmesi);color:#fff;font-weight:700;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 12px;border-radius:2px}
+.mensaje h3{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;font-size:1.5rem;text-transform:uppercase;margin-top:10px}
+.mensaje p{font-size:.85rem;color:var(--claro);margin-top:4px}
+.mensaje .acciones{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.toca{margin-top:24px;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-claro);animation:late 1.6s ease-in-out infinite}
+@keyframes late{50%{opacity:.35}}
+.chispa{position:absolute;width:7px;height:7px;border-radius:1px;background:var(--oro-claro);z-index:5;pointer-events:none;animation:chispa 1.2s ease-out forwards}
+@keyframes chispa{to{transform:translate(var(--x),var(--y)) rotate(540deg);opacity:0}}
+
+/* cromo que habla */
+.habla-caja{width:min(340px,86vw);text-align:center}
+.habla-caja .cromo{width:min(260px,64vw);margin:0 auto}
+.habla-caja .cromo .nombre b{font-size:1.7rem}
+.habla-caja .cromo .nombre span{font-size:.7rem}
+.subtitulo{margin-top:22px;font-size:1.02rem;line-height:1.5;color:var(--hueso);min-height:3em}
+.subtitulo .w{opacity:.35;transition:opacity .15s}
+.subtitulo .w.dicha{opacity:1}
+.onda{display:flex;gap:4px;justify-content:center;height:22px;align-items:center;margin-top:14px}
+.onda i{width:4px;height:6px;border-radius:2px;background:var(--oro-claro);opacity:.4}
+.hablando .onda i{opacity:1;animation:barra .5s ease-in-out infinite alternate}
+.onda i:nth-child(2){animation-delay:.1s}.onda i:nth-child(3){animation-delay:.2s}.onda i:nth-child(4){animation-delay:.3s}.onda i:nth-child(5){animation-delay:.15s}
+@keyframes barra{to{height:22px}}
+.nota-voz{margin-top:12px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--claro)}
+.boca-a{opacity:0}
+.hablando .boca-a{animation:boca .22s steps(1) infinite}
+.hablando .boca-c{animation:boca .22s steps(1) infinite reverse}
+@keyframes boca{0%{opacity:1}50%{opacity:0}}
+.ojos{transform-box:fill-box;transform-origin:center;animation:parpadeo 4.5s infinite}
+@keyframes parpadeo{0%,94%,100%{transform:none}97%{transform:scaleY(.1)}}
+.rejilla .cromo .play,.carta .cromo .play{top:auto;left:auto;right:7px;bottom:46px;margin:0;width:30px;height:30px}
+.rejilla .cromo .play svg{width:11px;height:11px}
+.carta .cromo .play{width:40px;height:40px;bottom:70px}
+@media (prefers-reduced-motion:reduce){.sobre.temblor,.toca,.ojos{animation:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="aviso-demo">Demostración · personajes y voces inventados</div>
+
+  <header class="cab">
+    <img src="img/escudo.png" alt="Escudo del Villargordo C.F.">
+    <div>
+      <small>Alevín · Temporada 2026/27</small>
+      <h1>El álbum<br>de <em id="dueño">Hugo</em></h1>
+    </div>
+  </header>
+
+  <div class="progreso"><span><b id="tengo">0</b> de <b id="total">0</b> cromos</span><span id="pct">0%</span></div>
+  <div class="barra"><i id="barra" style="width:0"></i></div>
+
+  <section class="sobres" id="caja-sobres" aria-live="polite"></section>
+
+  <div class="tit-sec"><h2>Mi colección</h2><span>Toca un cromo para escucharlo</span></div>
+  <div class="rejilla" id="rejilla"></div>
+
+  <div class="tit-sec"><h2>Mis sobres</h2><span>Lo reparte el míster</span></div>
+  <ul class="historial" id="historial"></ul>
+  <p class="reglas">Cada sobre trae un cromo que todavía no tienes: nunca hay repetidos. Todos los que vienen a entrenar reciben su sobre, y cada semana el míster da como máximo dos cromos de valor por equipo, por esfuerzo, compañerismo o mejora en el cole.</p>
+
+  <footer class="pie">
+    <div><img src="img/patrocinadores/oleo-color.svg" alt="Oleo Telecom" style="background:#fff;padding:4px 8px;border-radius:3px;height:30px"><div style="margin-top:6px">Con la colaboración de Oleo Telecom</div></div>
+    <button type="button" id="reiniciar">Reiniciar demo</button>
+  </footer>
+</div>
+
+<!-- abrir sobre -->
+<div class="capa" id="capa-sobre" role="dialog" aria-modal="true" aria-label="Abrir sobre">
+  <button class="cerrar" type="button" data-cierra aria-label="Cerrar">×</button>
+  <div class="escena" id="escena">
+    <div class="carta" id="carta"><div class="dorso"><img src="img/escudo.png" alt=""></div><div class="frente" id="frente"></div></div>
+    <div class="sobre temblor" id="sobre" role="button" tabindex="0" aria-label="Toca para abrir el sobre">
+      <div class="tira"></div>
+      <div class="cara"><img class="esc" src="img/escudo.png" alt=""><small>Sobre de cromos</small><b>Villargordo<br>C.F.</b><small>Temporada 26/27</small></div>
+      <div class="colab">Con la colaboración de<img src="img/patrocinadores/oleo-color.svg" alt="Oleo Telecom"></div>
+    </div>
+  </div>
+  <p class="toca" id="toca">Toca el sobre para abrirlo</p>
+  <div class="mensaje" id="mensaje"></div>
+</div>
+
+<!-- cromo que habla -->
+<div class="capa" id="capa-habla" role="dialog" aria-modal="true" aria-label="Cromo que habla">
+  <button class="cerrar" type="button" data-cierra aria-label="Cerrar">×</button>
+  <div class="habla-caja" id="habla-caja"></div>
+</div>
+
+<script>
+/* ---------- personajes inventados ---------- */
+const PIEL = ["#F2C9A5","#E0AC84","#C68A62","#8D5A3B","#F6D5B8"];
+const EQUIPO = [
+  {id:"escudo", tipo:"escudo", nombre:"Villargordo C.F.", pos:"Escudo", especial:true},
+  {id:"paco", nombre:"Míster Paco", pos:"Entrenador", piel:1, pelo:"calvo", colorPelo:"#5b5048", barba:true, adulto:true, especial:true, ropa:"#1F2B4F",
+    frase:"¡Buenas! Soy Paco, el míster del alevín. Aquí lo importante es venir a entrenar con ganas, ayudar al compañero y pasarlo en grande. Los goles llegan solos."},
+  {id:"hugo", nombre:"Hugo", pos:"Delantero", dorsal:9, piel:0, pelo:"corto", colorPelo:"#4a2e1c",
+    frase:"¡Hola! Soy Hugo, juego de delantero y llevo el nueve. Mi jugada favorita es el sombrero, y cuando marco lo celebro como los mayores. ¡Aúpa Villargordo!"},
+  {id:"lucia", nombre:"Lucía", pos:"Portera", dorsal:1, piel:4, pelo:"coleta", colorPelo:"#a8642a",
+    frase:"Soy Lucía y soy la portera. No me da miedo nada, ni los penaltis. Lo que más me gusta es parar un balón y que todo el equipo me abrace."},
+  {id:"martina", nombre:"Martina", pos:"Defensa", dorsal:4, piel:2, pelo:"largo", colorPelo:"#1d1410",
+    frase:"Hola, soy Martina, defensa central. Mi abuelo viene a todos los partidos y me grita desde la grada. ¡Abuelo, esta va por ti!"},
+  {id:"alex", nombre:"Álex", pos:"Centrocampista", dorsal:8, piel:1, pelo:"rizado", colorPelo:"#2b1a10",
+    frase:"Soy Álex y juego en el medio. Me gusta dar el último pase, que es casi mejor que marcar. Bueno, casi."},
+  {id:"carmen", nombre:"Carmen", pos:"Extremo", dorsal:11, piel:0, pelo:"coleta", colorPelo:"#e0b25a",
+    frase:"¡Hola! Me llamo Carmen y corro por la banda más rápido que nadie del equipo. Mi sueño es jugar algún día en el primer equipo del Villargordo."},
+  {id:"mario", nombre:"Mario", pos:"Defensa", dorsal:3, piel:3, pelo:"corto", colorPelo:"#120c08",
+    frase:"Soy Mario, lateral izquierdo. Este cromo me lo gané por esfuerzo, porque no he faltado a ningún entreno. ¡Ni cuando llovía!"},
+  {id:"sofia", nombre:"Sofía", pos:"Centrocampista", dorsal:6, piel:4, pelo:"largo", colorPelo:"#7a4a24",
+    frase:"Hola, soy Sofía. En el cole he subido las notas de mates y por eso me dieron este cromo. Ahora quiero subir también los goles."},
+  {id:"leo", nombre:"Leo", pos:"Delantero", dorsal:10, piel:2, pelo:"rizado", colorPelo:"#1a110b",
+    frase:"Soy Leo, llevo el diez. Lo que más me gusta del Villargordo es que aquí todos somos amigos, ganemos o perdamos."},
+  {id:"paula", nombre:"Paula", pos:"Defensa", dorsal:5, piel:1, pelo:"coleta", colorPelo:"#3a2416",
+    frase:"¡Hola! Soy Paula. Me gané este cromo por compañerismo, porque ayudé a una niña nueva a aprenderse los ejercicios."},
+  {id:"dani", nombre:"Dani", pos:"Portero", dorsal:13, piel:0, pelo:"corto", colorPelo:"#c98b3c",
+    frase:"Soy Dani, el otro portero. Mi abuela dice que tengo manos de pianista, pero yo las uso para parar balones."},
+  {id:"mvp", nombre:"MVP de octubre", pos:"Cromo especial", especial:true, piel:3, pelo:"corto", colorPelo:"#120c08", dorsal:3, corona:true,
+    frase:"Este es el cromo especial del mes. Lo gana quien más ha ayudado al equipo, y en octubre fue para Mario. ¡Enhorabuena, campeón!"},
+];
+const MOTIVOS = ["Asistencia","Esfuerzo","Compañerismo","Mejora en el cole","Asistencia"];
+const INICIAL = { tengo:["hugo","escudo","paco","lucia","martina"], sobres:2,
+  historial:[
+    {f:"Martes 27 oct", m:"Asistencia", c:"lucia"},
+    {f:"Jueves 29 oct", m:"Compañerismo", c:"martina"},
+  ] };
+const CLAVE = "villargordo-demo-album-v1";
+
+/* ---------- avatar ilustrado ---------- */
+function avatar(p, grande){
+  if (p.tipo === "escudo") return `<svg viewBox="0 0 200 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="img/escudo.png" x="40" y="60" width="120" height="140"/></svg>`;
+  const piel = PIEL[p.piel||0], pelo = p.colorPelo||"#3a2416", ropa = p.ropa||"#B5122B";
+  const atras = {largo:`<path d="M52 104c-4 40 2 80 10 96h76c8-16 14-56 10-96Z" fill="${pelo}"/>`,
+                 coleta:`<path d="M140 88c22 6 30 34 18 56c-6-20-14-30-22-34Z" fill="${pelo}"/>`}[p.pelo]||"";
+  const arriba = {
+    corto:`<path d="M58 98c-2-34 22-52 44-52s46 16 42 52c-6-14-16-22-30-24c-14 10-38 12-56 24Z" fill="${pelo}"/>`,
+    largo:`<path d="M56 106c-4-38 20-60 46-60s50 20 44 60c-8-22-22-36-44-38c-20 2-36 16-46 38Z" fill="${pelo}"/>`,
+    coleta:`<path d="M56 100c-2-34 22-54 46-54s46 18 44 54c-10-18-24-28-44-28s-36 10-46 28Z" fill="${pelo}"/>`,
+    rizado:`<g fill="${pelo}"><circle cx="66" cy="78" r="16"/><circle cx="86" cy="62" r="18"/><circle cx="110" cy="58" r="18"/><circle cx="132" cy="70" r="17"/><circle cx="142" cy="90" r="12"/><circle cx="58" cy="96" r="11"/></g>`,
+    calvo:`<path d="M60 96c0-10 4-18 8-22M140 96c0-10-4-18-8-22" stroke="${pelo}" stroke-width="8" stroke-linecap="round" fill="none"/>`,
+  }[p.pelo]||"";
+  const barba = p.barba ? `<path d="M70 124c6 30 20 40 32 40s26-10 32-40c-8 10-18 14-32 14s-24-4-32-14Z" fill="${pelo}" opacity=".85"/>` : "";
+  const dorsal = p.dorsal!=null ? `<text x="100" y="246" text-anchor="middle" font-family="Big Shoulders Display,Impact,sans-serif" font-weight="900" font-size="34" fill="#fff" opacity=".92">${p.dorsal}</text>` : "";
+  const corona = p.corona ? `<path d="M74 44l10 16l16-22l16 22l10-16l-4 28H78Z" fill="#E6CD85" stroke="#8F7024" stroke-width="2"/>` : "";
+  return `<svg viewBox="22 34 156 218" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    ${atras}
+    <path d="M24 280c0-50 30-82 76-82s76 32 76 82Z" fill="${ropa}"/>
+    <path d="M24 280c0-50 30-82 76-82s76 32 76 82" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+    ${p.adulto ? "" : `<path d="M60 214l-10 66h18l8-60ZM140 214l10 66h-18l-8-60Z" fill="#fff" opacity=".9"/>`}
+    <path d="M86 186h28v20c0 8-28 8-28 0Z" fill="${piel}"/>
+    <path d="M80 200c6 10 34 10 40 0l6 6c-10 14-42 14-52 0Z" fill="#fff"/>
+    <ellipse cx="56" cy="116" rx="9" ry="12" fill="${piel}"/><ellipse cx="144" cy="116" rx="9" ry="12" fill="${piel}"/>
+    <ellipse cx="100" cy="112" rx="44" ry="${p.adulto?54:50}" fill="${piel}"/>
+    ${barba}
+    <ellipse cx="78" cy="128" rx="9" ry="5" fill="#E26B6B" opacity=".28"/><ellipse cx="122" cy="128" rx="9" ry="5" fill="#E26B6B" opacity=".28"/>
+    <path d="M74 96q8-6 16 0M110 96q8-6 16 0" stroke="${pelo}" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <g class="ojos"><ellipse cx="82" cy="112" rx="6" ry="7.5" fill="#1b1410"/><ellipse cx="118" cy="112" rx="6" ry="7.5" fill="#1b1410"/>
+    <circle cx="84" cy="109" r="2.2" fill="#fff"/><circle cx="120" cy="109" r="2.2" fill="#fff"/></g>
+    
+    <path d="M98 118q2 8 6 6" stroke="#000" stroke-opacity=".25" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path class="boca-c" d="M86 136q14 14 28 0" stroke="#7a2a2a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <g class="boca-a"><ellipse cx="100" cy="140" rx="11" ry="9" fill="#6b1f24"/><ellipse cx="100" cy="145" rx="6" ry="3.5" fill="#E26B6B"/></g>
+    ${arriba}${corona}
+    ${dorsal}
+  </svg>`;
+}
+
+function cromoHTML(p, k, tiene, extra=""){
+  const n = `<span class="n">${String(k+1).padStart(2,"0")}</span>`;
+  if (!tiene) return `<div class="cromo hueco"><div class="in"><svg class="silueta" viewBox="0 0 100 120" aria-hidden="true"><circle cx="50" cy="34" r="22" fill="currentColor"/><path d="M8 120c0-30 18-50 42-50s42 20 42 50Z" fill="currentColor"/></svg>${n}<div class="nombre"><b>Cromo ${k+1}</b><span>Por descubrir</span></div></div></div>`;
+  const habla = !!p.frase;
+  return `<div class="cromo lleno ${p.especial?"especial":""} ${habla?"con-video":""} ${extra}" style="--c:${p.ropa||"#B5122B"}" ${habla?`data-habla="${p.id}" role="button" tabindex="0" aria-label="Escuchar a ${p.nombre}"`:""}><div class="in">
+    <div class="foto">${avatar(p)}</div>${n}${p.tipo==="escudo"?"":'<img class="esc" src="img/escudo.png" alt="">'}
+    ${habla?'<span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5Z"/></svg></span>':""}
+    <div class="nombre"><b>${p.nombre}</b><span>${p.pos}</span></div></div></div>`;
+}
+
+/* ---------- estado ---------- */
+let estado;
+function carga(){ try { estado = JSON.parse(localStorage.getItem(CLAVE)) || null; } catch { estado = null; }
+  if (!estado || !Array.isArray(estado.tengo)) estado = JSON.parse(JSON.stringify(INICIAL)); }
+function guarda(){ try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch {} }
+
+function pinta(nuevo){
+  const t = estado.tengo.length, T = EQUIPO.length;
+  document.getElementById("tengo").textContent = t;
+  document.getElementById("total").textContent = T;
+  document.getElementById("pct").textContent = Math.round(t/T*100) + "%";
+  requestAnimationFrame(()=> document.getElementById("barra").style.width = (t/T*100) + "%");
+  document.getElementById("rejilla").innerHTML = EQUIPO.map((p,k)=>cromoHTML(p,k,estado.tengo.includes(p.id), p.id===nuevo?"nuevo":"")).join("");
+  const caja = document.getElementById("caja-sobres");
+  if (t === T) caja.innerHTML = `<div class="mini-sobre"><img src="img/escudo.png" alt=""></div><div><h2>¡Álbum completo!</h2><p>Hugo tiene los ${T} cromos del alevín. Enhorabuena, campeón.</p></div>`;
+  else if (estado.sobres > 0) caja.innerHTML = `<div class="mini-sobre"><img src="img/escudo.png" alt=""><span>${estado.sobres}</span></div><div><h2>${estado.sobres===1?"Tienes 1 sobre":"Tienes "+estado.sobres+" sobres"} sin abrir</h2><p>Te los ha dado el míster después del entreno.</p><button class="btn oro" type="button" id="abrir">Abrir sobre</button></div>`;
+  else caja.innerHTML = `<div class="mini-sobre" style="filter:grayscale(.7);opacity:.6"><img src="img/escudo.png" alt=""></div><div><h2>No te quedan sobres</h2><p>El próximo llega después del entreno.</p><button class="btn linea" type="button" id="simular">Simular entreno (+1 sobre)</button></div>`;
+  document.getElementById("historial").innerHTML = estado.historial.slice().reverse().map(h=>{
+    const p = EQUIPO.find(e=>e.id===h.c); return `<li><div><span class="etq">${h.m}</span>Cromo de <b>${p?p.nombre:"?"}</b></div><span>${h.f}</span></li>`; }).join("");
+  const a = document.getElementById("abrir"); if (a) a.onclick = abreSobre;
+  const s = document.getElementById("simular"); if (s) s.onclick = ()=>{ estado.sobres++; guarda(); pinta(); };
+}
+
+/* ---------- abrir sobre ---------- */
+let enCurso = null;
+function abreSobre(){
+  const faltan = EQUIPO.filter(p=>!estado.tengo.includes(p.id));
+  if (!faltan.length || estado.sobres<=0) return;
+  const p = faltan[Math.floor(Math.random()*faltan.length)];
+  const k = EQUIPO.indexOf(p);
+  const motivo = MOTIVOS[estado.historial.length % MOTIVOS.length];
+  enCurso = {p, motivo};
+  const sobre = document.getElementById("sobre"), carta = document.getElementById("carta");
+  sobre.className = "sobre temblor"; carta.className = "carta";
+  document.getElementById("frente").innerHTML = cromoHTML(p,k,true);
+  document.getElementById("mensaje").className = "mensaje"; document.getElementById("mensaje").innerHTML = "";
+  document.getElementById("toca").style.display = "";
+  document.getElementById("capa-sobre").classList.add("on");
+  sobre.onclick = sobre.onkeydown = e => { if (e.type==="keydown" && e.key!=="Enter" && e.key!==" ") return; rasga(); };
+}
+function rasga(){
+  const sobre = document.getElementById("sobre"); if (sobre.classList.contains("abierto")) return;
+  sobre.classList.remove("temblor"); sobre.classList.add("abierto");
+  document.getElementById("toca").style.display = "none";
+  setTimeout(()=>{ sobre.classList.add("fuera"); document.getElementById("carta").classList.add("sube"); }, 450);
+  setTimeout(()=>{ chispas(); revela(); }, 1350);
+}
+function chispas(){
+  const esc = document.getElementById("escena");
+  for (let i=0;i<26;i++){ const c=document.createElement("i"); c.className="chispa";
+    const a=Math.random()*Math.PI*2, d=120+Math.random()*120;
+    c.style.left="50%"; c.style.top="40%"; c.style.setProperty("--x",Math.cos(a)*d+"px"); c.style.setProperty("--y",Math.sin(a)*d+"px");
+    c.style.background = i%3? "#E6CD85" : "#B5122B"; esc.appendChild(c); setTimeout(()=>c.remove(),1300); }
+}
+function revela(){
+  const {p, motivo} = enCurso;
+  // se guarda ya: aunque cierren, el cromo es suyo
+  if (!estado.tengo.includes(p.id)) { estado.tengo.push(p.id); estado.sobres--; estado.historial.push({f: hoyTexto(), m: motivo, c: p.id}); guarda(); }
+  const m = document.getElementById("mensaje");
+  m.innerHTML = `<span class="nuevo">¡Cromo nuevo!</span><h3>${p.nombre}</h3><p>Ganado por: <b style="color:var(--oro-claro)">${motivo}</b></p>
+    <div class="acciones">${p.frase?'<button class="btn oro" type="button" id="escuchar">▶ Escúchalo</button>':""}<button class="btn linea" type="button" id="pegar">Pegar en el álbum</button></div>`;
+  m.classList.add("on");
+  const e = document.getElementById("escuchar"); if (e) e.onclick = ()=>{ cierraCapas(); abreHabla(p.id); pinta(p.id); };
+  document.getElementById("pegar").onclick = ()=>{ cierraCapas(); pinta(p.id); document.querySelector(".cromo.nuevo")?.scrollIntoView({behavior:"smooth",block:"center"}); };
+}
+const hoyTexto = () => new Date().toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"short"}).replace(/^./,c=>c.toUpperCase());
+
+/* ---------- cromo que habla ---------- */
+let vozES = null;
+function eligeVoz(){ const v = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  vozES = v.find(x=>/es[-_]ES/i.test(x.lang) && /female|mujer|helena|laura|elvira|monica|lucia/i.test(x.name)) || v.find(x=>/es[-_]ES/i.test(x.lang)) || v.find(x=>/^es/i.test(x.lang)) || null; }
+if (window.speechSynthesis){ eligeVoz(); speechSynthesis.onvoiceschanged = eligeVoz; }
+let temporizador = null;
+function abreHabla(id){
+  const p = EQUIPO.find(e=>e.id===id), k = EQUIPO.indexOf(p);
+  const caja = document.getElementById("habla-caja");
+  const palabras = p.frase.split(/\s+/);
+  caja.innerHTML = cromoHTML(p,k,true).replace('class="cromo','class="cromo grande') +
+    `<div class="onda"><i></i><i></i><i></i><i></i><i></i></div>
+     <p class="subtitulo">${palabras.map(w=>`<span class="w">${w}</span>`).join(" ")}</p>
+     <button class="btn linea" type="button" id="otra" style="margin-top:14px">▶ Escuchar otra vez</button>
+     <p class="nota-voz">Voz de ejemplo · el real será el vídeo del niño</p>`;
+  caja.querySelector(".play")?.remove();
+  document.getElementById("capa-habla").classList.add("on");
+  document.getElementById("otra").onclick = ()=>habla(p, palabras);
+  habla(p, palabras);
+}
+function habla(p, palabras){
+  const caja = document.getElementById("habla-caja"), ws = [...caja.querySelectorAll(".w")];
+  calla(); ws.forEach(w=>w.classList.remove("dicha"));
+  caja.classList.add("hablando");
+  // subtítulos: se van encendiendo a ritmo de lectura (y con la voz, si el móvil la tiene)
+  let i = 0; const paso = p.adulto ? 330 : 300;
+  temporizador = setInterval(()=>{ if (i < ws.length) ws[i++].classList.add("dicha"); }, paso);
+  const fin = ()=>{ clearInterval(temporizador); ws.forEach(w=>w.classList.add("dicha")); caja.classList.remove("hablando"); };
+  if (window.speechSynthesis && window.SpeechSynthesisUtterance){
+    const u = new SpeechSynthesisUtterance(p.frase);
+    u.lang = "es-ES"; if (vozES) u.voice = vozES;
+    u.pitch = p.adulto ? 0.9 : 1.45; u.rate = p.adulto ? 1 : 1.05;
+    u.onend = u.onerror = fin;
+    speechSynthesis.speak(u);
+    setTimeout(()=>{ if (!speechSynthesis.speaking) {} }, 400);
+  } else setTimeout(fin, palabras.length*paso + 400);
+}
+function calla(){ clearInterval(temporizador); if (window.speechSynthesis) speechSynthesis.cancel(); }
+function cierraCapas(){ calla(); document.querySelectorAll(".capa").forEach(c=>c.classList.remove("on")); document.getElementById("habla-caja").classList.remove("hablando"); }
+
+/* ---------- eventos ---------- */
+document.querySelectorAll("[data-cierra]").forEach(b=>b.onclick=()=>{ const tenia = enCurso; cierraCapas(); if (tenia) pinta(tenia.p.id); enCurso=null; });
+document.addEventListener("keydown", e=>{ if (e.key==="Escape") cierraCapas(); });
+document.getElementById("rejilla").addEventListener("click", e=>{ const c=e.target.closest("[data-habla]"); if (c) abreHabla(c.dataset.habla); });
+document.getElementById("rejilla").addEventListener("keydown", e=>{ const c=e.target.closest("[data-habla]"); if (c && (e.key==="Enter"||e.key===" ")) { e.preventDefault(); abreHabla(c.dataset.habla); } });
+document.getElementById("reiniciar").onclick = ()=>{ estado = JSON.parse(JSON.stringify(INICIAL)); guarda(); pinta(); window.scrollTo({top:0,behavior:"smooth"}); };
+
+carga(); pinta();
+
+/* atajos para capturas: ?ver=sobre | ?ver=abierto | ?ver=habla&id=hugo | ?reset */
+const q = new URLSearchParams(location.search);
+if (q.has("reset")) { estado = JSON.parse(JSON.stringify(INICIAL)); guarda(); pinta(); }
+if (q.get("ver")==="sobre") abreSobre();
+if (q.get("ver")==="abierto") { abreSobre(); rasga(); }
+if (q.get("ver")==="habla") { const id=q.get("id")||"hugo"; abreHabla(id); }
+</script>
+</body>
+</html>

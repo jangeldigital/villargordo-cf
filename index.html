@@ -133,6 +133,15 @@ nav a:hover::after{transform:scaleX(1)}
 .filtros button{border:1px solid var(--hilo-claro);background:none;color:var(--claro);padding:10px 18px;border-radius:3px;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:all .2s}
 .filtros button:hover{border-color:var(--oro);color:var(--oro)}
 .filtros button[aria-pressed=true]{background:var(--oro);color:var(--tinta);border-color:var(--oro)}
+.mialbum-cta{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;margin-top:34px;padding:22px 26px;border:1px solid var(--oro);border-radius:4px;text-decoration:none;color:inherit;background:linear-gradient(90deg,rgba(201,162,58,.12),rgba(201,162,58,.02));transition:background .3s}
+.mialbum-cta:hover{background:linear-gradient(90deg,rgba(201,162,58,.22),rgba(201,162,58,.05))}
+.mc-sobre{width:62px;height:84px;border-radius:5px;display:grid;place-items:center;background:linear-gradient(145deg,#F3DE9C,#B08A2C 35%,#FFF1C2 55%,#9C7A25 80%);box-shadow:0 10px 22px rgba(0,0,0,.4);transform:rotate(-6deg)}
+.mc-sobre img{width:34px}
+.mc-txt small{display:block;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
+.mc-txt b{display:block;font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.6rem;text-transform:uppercase;line-height:1.05;margin:4px 0 6px;color:var(--hueso)}
+.mc-txt span{font-size:.9rem;color:var(--claro)}
+.mc-btn{background:var(--oro);color:var(--tinta);font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:3px;white-space:nowrap}
+@media (max-width:760px){.mialbum-cta{grid-template-columns:auto 1fr;gap:16px;padding:18px}.mc-btn{grid-column:1/-1;text-align:center}.mc-txt b{font-size:1.3rem}}
 .balance{display:grid;grid-template-columns:repeat(5,1fr) 1.6fr;border:1px solid var(--hilo);border-radius:4px;margin-bottom:28px;background:rgba(255,255,255,.02)}
 .balance>div{padding:22px 20px;border-right:1px solid var(--hilo)}
 .balance>div:last-child{border-right:0}
@@ -611,6 +620,11 @@ footer{background:var(--fondo-pie);color:var(--claro);padding:80px 0 32px;border
       </div>
     </div>
     <div class="equipos revela" id="equipos"></div>
+    <a class="mialbum-cta revela" href="mialbum.html">
+      <span class="mc-sobre" aria-hidden="true"><img src="img/escudo.png" alt=""></span>
+      <span class="mc-txt"><small>Próximamente · prueba la demo</small><b>Mi álbum: abre tus sobres desde el móvil</b><span>Cada niño y niña colecciona los cromos de su equipo. Los sobres se ganan entrenando, sin repetidos, y cada cromo habla.</span></span>
+      <span class="mc-btn">Abrir un sobre →</span>
+    </a>
   </div>
 </section>
 
