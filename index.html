@@ -730,6 +730,7 @@ footer{background:var(--fondo-pie);color:var(--claro);padding:80px 0 32px;border
 </footer>
 
 <script src="cromos-render.js?v=2"></script>
+<script src="demo.js?v=4"></script>
 <script>
 /* ===== Álbum de cromos (los datos se gestionan desde club.html) ===== */
 (async function(){
@@ -737,6 +738,7 @@ footer{background:var(--fondo-pie);color:var(--claro);padding:80px 0 32px;border
   let EQUIPOS;
   try { EQUIPOS = (await (await fetch("cromos.json", { cache: "no-store" })).json()).equipos; }
   catch { document.getElementById("equipos").innerHTML = `<p>El álbum no está disponible ahora mismo.</p>`; return; }
+  if (window.Demo && Demo.activo) EQUIPOS = Demo.rellena(EQUIPOS);
 
   const fotoEquipo = (eq, grande) => eq.foto
     ? `<img class="foto" src="${esc(eq.foto)}" alt="Plantilla ${esc(eq.nombre)} del Villargordo CF" loading="lazy">`
@@ -779,6 +781,7 @@ footer{background:var(--fondo-pie);color:var(--claro);padding:80px 0 32px;border
   function verVideo(k){
     const eq = eqAbierto, j = eq && eq.jugadores[k];
     if (!j || !tieneVideo(eq, j)) return;
+    if (j.frase && window.Demo) return Demo.habla({ nombre: j.nombre, rol: `${j.posicion} · ${eq.nombre}`, frase: j.frase, p: j._p });
     vdlg.innerHTML = `<div class="vd ${j.especial ? "especial" : ""}">
       <button class="cerrar" aria-label="Cerrar vídeo">✕</button>
       <video src="${esc(j.video)}" poster="${esc(j.foto)}" controls autoplay playsinline preload="metadata"></video>
@@ -950,5 +953,6 @@ document.getElementById("girar").onclick = e => {
   els.forEach(e => io.observe(e));
 })();
 </script>
+<script>if (window.Demo) Demo.inicia();</script>
 </body>
 </html>
