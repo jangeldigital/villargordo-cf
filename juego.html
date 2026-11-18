@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0B1226">
+<title>Cabezones del Villargordo</title>
+<link rel="icon" href="img/escudo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter+Tight:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{--noche:#0B1226;--noche2:#121B38;--oro:#C9A23A;--oro2:#E6CD85;--rojo:#B5122B;--oliva:#658049;--hueso:#F7F4EC}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--noche);color:#fff;font-family:"Inter Tight",system-ui,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none;overscroll-behavior:none}
+#lienzo{position:fixed;inset:0;width:100%;height:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+[hidden]{display:none!important}
+
+/* ---------- HUD ---------- */
+#hud{position:fixed;inset:0;pointer-events:none;z-index:5}
+#marcador{position:absolute;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(11,18,38,.86);border:1px solid rgba(201,162,58,.5);border-radius:10px;padding:6px 14px;font:800 15px "Big Shoulders Display",Impact,sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+#marcador .eq{display:flex;align-items:center;gap:6px}
+#marcador .eq::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--rojo)}
+#m1::before{background:var(--oliva)!important}
+#goles{font-size:22px;color:var(--oro2);min-width:54px;text-align:center}
+#reloj{font:600 12px "Inter Tight";letter-spacing:.04em;color:#C9CFDD;border-left:1px solid rgba(255,255,255,.2);padding-left:10px;text-transform:none}
+#tanda{position:absolute;top:calc(max(8px,env(safe-area-inset-top)) + 42px);left:50%;transform:translateX(-50%);font:700 12px "Inter Tight";color:var(--oro2)}
+#b-pausa{pointer-events:auto;position:absolute;top:max(8px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));width:40px;height:40px;border-radius:50%;background:rgba(11,18,38,.8);border:1px solid rgba(255,255,255,.25);font:800 14px "Inter Tight"}
+#aviso{position:absolute;top:24%;left:50%;transform:translate(-50%,-10px) scale(.9);opacity:0;transition:.25s;font:900 clamp(22px,5vw,40px) "Big Shoulders Display",Impact,sans-serif;letter-spacing:.04em;text-transform:uppercase;text-align:center;color:#fff;text-shadow:0 3px 0 var(--rojo),0 6px 18px rgba(0,0,0,.6);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
+#aviso.largo{font-size:clamp(16px,3.4vw,26px);white-space:normal;width:min(90vw,620px)}
+#aviso.on{opacity:1;transform:translate(-50%,0) scale(1)}
+#joy{pointer-events:auto;position:absolute;left:0;bottom:0;width:46%;height:72%;touch-action:none}
+#joy-base,#joy-pomo{position:fixed;left:0;top:0;border-radius:50%;pointer-events:none}
+#joy-base{width:110px;height:110px;margin:-55px 0 0 -55px;border:2px solid rgba(255,255,255,.28);background:rgba(11,18,38,.25)}
+#joy-pomo{width:52px;height:52px;margin:-26px 0 0 -26px;background:rgba(255,255,255,.55);box-shadow:0 2px 10px rgba(0,0,0,.4)}
+#joy:not(.activo) #joy-base{transform:translate(calc(max(20px,env(safe-area-inset-left)) + 76px),calc(100vh - 96px))!important;opacity:.6}
+#joy:not(.activo) #joy-pomo{transform:translate(calc(max(20px,env(safe-area-inset-left)) + 76px),calc(100vh - 96px))!important;opacity:.45}
+#joy:not(.activo)::after{content:"Mover";position:fixed;left:calc(max(20px,env(safe-area-inset-left)) + 76px);top:calc(100vh - 34px);transform:translateX(-50%);font:600 10px "Inter Tight";letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+#botones{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));width:210px;height:170px;pointer-events:none}
+#botones button{pointer-events:auto;position:absolute;border-radius:50%;display:grid;place-items:center;font:900 15px "Big Shoulders Display",Impact,sans-serif;letter-spacing:.06em;box-shadow:0 4px 0 rgba(0,0,0,.35),0 8px 18px rgba(0,0,0,.35);touch-action:none;transition:transform .06s}
+#botones button.pulsado{transform:translateY(3px) scale(.96)}
+#b-tiro{right:0;bottom:6px;width:92px;height:92px;background:radial-gradient(circle at 35% 30%,#e2334c,var(--rojo) 60%,#7d0c1d);font-size:18px!important;border:2px solid rgba(255,255,255,.35)}
+#b-tiro.chilena{background:radial-gradient(circle at 35% 30%,#fff1c2,var(--oro) 60%,#8a6c1c);color:var(--noche);animation:late .5s infinite alternate}
+#b-pase{right:104px;bottom:0;width:72px;height:72px;background:radial-gradient(circle at 35% 30%,#2c3d6e,var(--noche2) 70%);border:2px solid rgba(255,255,255,.3)}
+#b-esp{right:96px;bottom:92px;width:58px;height:58px;background:rgba(11,18,38,.85);border:2px solid rgba(201,162,58,.5);font-size:22px!important;overflow:hidden;opacity:.7}
+#b-esp.listo{opacity:1;border-color:var(--oro2);background:radial-gradient(circle,#fff1c2,var(--oro));animation:late .6s infinite alternate}
+#b-esp.armado{opacity:1;background:var(--rojo);border-color:#fff}
+@keyframes late{to{transform:scale(1.08);box-shadow:0 0 0 6px rgba(230,205,133,.35),0 8px 18px rgba(0,0,0,.35)}}
+#barra{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:calc(max(14px,env(safe-area-inset-bottom)) + 166px);width:150px;height:14px;border-radius:8px;background:rgba(11,18,38,.8);border:1px solid rgba(201,162,58,.5);overflow:hidden}
+#barra i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--oro),var(--oro2));transition:width .2s}
+#barra span{position:absolute;inset:0;display:grid;place-items:center;font:700 9px "Inter Tight";letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 2px #000}
+
+/* ---------- pantallas ---------- */
+.pantalla{position:fixed;inset:0;z-index:10;overflow:auto;touch-action:pan-y;display:flex;flex-direction:column;align-items:center;padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));background:linear-gradient(180deg,rgba(11,18,38,.55),rgba(11,18,38,.92) 70%)}
+.pantalla.solida{background:rgba(11,18,38,.94)}
+.caja{width:min(760px,100%);margin:auto 0;text-align:center}
+.marca{display:flex;align-items:center;justify-content:center;gap:12px;font:600 11px "Inter Tight";letter-spacing:.2em;text-transform:uppercase;color:var(--oro2)}
+.marca img{height:46px}
+h1.titulo{font:900 clamp(44px,9vw,88px)/.88 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;margin:14px 0 8px;text-shadow:0 4px 0 var(--rojo),0 10px 30px rgba(0,0,0,.5)}
+h1.titulo em{font-style:normal;color:var(--oro2)}
+.sub{font-size:15px;color:#C9CFDD;line-height:1.45;max-width:520px;margin:0 auto}
+h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;letter-spacing:.03em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 26px;border-radius:40px;font:800 16px "Big Shoulders Display",Impact;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.btn.oro{background:var(--oro);color:var(--noche);box-shadow:0 4px 0 #8a6c1c}
+.btn.rojo{background:var(--rojo);color:#fff;box-shadow:0 4px 0 #7d0c1d}
+.btn.linea{border:1px solid rgba(255,255,255,.35);color:#fff;font-size:13px}
+.fila{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.oleo-pie{margin-top:18px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9aa3bd;display:flex;align-items:center;justify-content:center;gap:8px}
+.oleo-pie img{height:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin-top:10px;font-size:12px;color:#9aa3bd}
+.chips button{border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:8px 14px;font:600 13px "Inter Tight"}
+.chips button.on{background:var(--oro2);color:var(--noche);border-color:var(--oro2)}
+#lista-equipos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
+.eq-card{background:linear-gradient(160deg,#1c2850,#0f1730);border:1px solid rgba(201,162,58,.35);border-radius:14px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .15s}
+.eq-card:hover,.eq-card:focus-visible{transform:translateY(-3px);border-color:var(--oro2)}
+.eq-card .caras{display:flex;height:58px;align-items:center}
+.eq-card .caras img{width:52px;height:52px;margin:0 -7px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.eq-card .caras i{font-style:normal;font-size:40px}
+.eq-card b{font:900 20px "Big Shoulders Display",Impact;text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+.eq-card small{font-size:11px;color:#9aa3bd}
+#alin{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+.jug{background:linear-gradient(170deg,#1c2850,#0f1730);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.jug.propio{border-color:var(--oro2);box-shadow:0 0 0 1px var(--oro2) inset}
+.jug img{width:64px;height:64px}
+.jug b{font:800 16px "Big Shoulders Display",Impact;text-transform:uppercase;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.jug small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9aa3bd}
+.jug .esp{font-size:11px;color:var(--oro2);margin-top:4px;line-height:1.25}
+.jug .estrella{font-style:normal;font-size:10px;color:var(--noche);background:var(--oro2);border-radius:10px;padding:2px 7px;margin-top:4px}
+.jug em{font-style:normal;font-size:10px;color:#9aa3bd;margin-top:6px;text-decoration:underline}
+.ayuda{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:16px;text-align:left}
+.ayuda div{background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.45;color:#C9CFDD}
+.ayuda b{display:block;color:#fff;font:800 17px "Big Shoulders Display",Impact;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.ayuda .k{display:inline-block;min-width:22px;padding:0 6px;border-radius:4px;background:rgba(255,255,255,.15);font:600 11px "Inter Tight";text-align:center;color:#fff}
+.especiales{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;font-size:12px;color:var(--oro2)}
+.especiales span{border:1px solid rgba(201,162,58,.4);border-radius:20px;padding:4px 10px}
+#p-gol{position:fixed;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;background:radial-gradient(circle,rgba(181,18,43,.35),transparent 60%)}
+#p-gol canvas{width:min(34vh,170px);height:min(34vh,170px);filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+#p-gol h2{font:900 clamp(54px,12vw,110px)/.9 "Big Shoulders Display",Impact;letter-spacing:.02em;color:#fff;text-shadow:0 5px 0 var(--rojo),0 12px 30px rgba(0,0,0,.6)}
+#p-gol p{font:700 16px "Inter Tight";color:var(--oro2);letter-spacing:.06em;text-transform:uppercase;text-shadow:0 2px 6px #000}
+#p-gol.anim canvas{animation:salta .6s cubic-bezier(.3,1.6,.5,1)}
+#p-gol.anim h2{animation:salta .5s .1s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes salta{from{transform:scale(.2);opacity:0}}
+.marcador-g{font:900 clamp(28px,6vw,46px) "Big Shoulders Display",Impact;text-transform:uppercase;color:var(--oro2);margin-top:6px}
+#f-cara{width:120px;height:120px;margin:10px auto 0;display:block}
+.anuncio{margin-top:18px;border:1px solid rgba(201,162,58,.45);border-radius:12px;padding:12px 16px;font-size:13px;line-height:1.45;color:#C9CFDD;background:rgba(201,162,58,.08)}
+.anuncio b{color:#fff}
+#cargando{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:var(--noche);font:800 20px "Big Shoulders Display",Impact;letter-spacing:.1em;text-transform:uppercase;color:var(--oro2)}
+#gira{display:none}
+@media (orientation:portrait) and (max-width:700px){
+  #gira{position:fixed;left:50%;bottom:max(200px,22vh);transform:translateX(-50%);z-index:6;display:block;pointer-events:none;background:rgba(11,18,38,.85);border:1px solid rgba(201,162,58,.5);border-radius:20px;padding:8px 14px;font:600 12px "Inter Tight";color:var(--oro2);white-space:nowrap}
+  #hud[hidden]~#gira{display:none}
+  #alin{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-height:430px){
+  h1.titulo{font-size:52px;margin:6px 0}
+  .marca img{height:34px}
+  .fila{margin-top:12px}
+  #lista-equipos{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:10px}
+  .eq-card{padding:8px}
+  .eq-card .caras{height:44px}.eq-card .caras img{width:40px;height:40px}
+  .jug img{width:48px;height:48px}
+  #botones{transform:scale(.88);transform-origin:right bottom}
+}
+</style>
+</head>
+<body>
+<canvas id="lienzo" aria-label="Campo de juego"></canvas>
+
+<div id="hud" hidden>
+  <div id="marcador"><span class="eq" id="m0">Villargordo</span><b id="goles">0 - 0</b><span class="eq" id="m1">Rival</span><span id="reloj">1ª · 2:00</span></div>
+  <div id="tanda"></div>
+  <button id="b-pausa" type="button" aria-label="Pausa">II</button>
+  <div id="aviso" role="status" aria-live="polite"></div>
+  <div id="joy" aria-label="Joystick"><div id="joy-base"></div><div id="joy-pomo"></div></div>
+  <div id="barra"><i id="barra-fill"></i><span>Especial</span></div>
+  <div id="botones">
+    <button id="b-esp" type="button" aria-label="Tiro especial">⚡</button>
+    <button id="b-pase" type="button">PASE</button>
+    <button id="b-tiro" type="button">TIRO</button>
+  </div>
+</div>
+<div id="gira">↻ Gira el móvil para jugar mejor</div>
+
+<div id="p-gol" hidden><canvas id="gol-cara" width="200" height="200"></canvas><h2>¡GOOOL!</h2><p id="gol-quien"></p></div>
+
+<!-- MENÚ -->
+<section id="p-menu" class="pantalla" hidden>
+  <div class="caja">
+    <div class="marca"><img src="img/escudo.png" alt="">Escuela Deportiva Villargordo C.F.</div>
+    <h1 class="titulo">Cabezones<br><em>del Villargordo</em></h1>
+    <p class="sub">Fútbol 5 contra 5 con las caras de los cromos. Chilenas, faltas, penaltis y tiros especiales. Elige tu categoría y a jugar.</p>
+    <div class="fila">
+      <button class="btn oro" id="b-jugar" type="button">⚽ Jugar partido</button>
+      <button class="btn linea" id="b-como" type="button">Cómo se juega</button>
+      <button class="btn linea b-sonido" type="button">🔊 Sonido</button>
+    </div>
+    <div class="fila"><a class="btn linea" href="index.html?demo">← Volver a la web</a><a class="btn linea" href="mialbum.html">Mi álbum de cromos</a></div>
+    <div class="oleo-pie">Con la colaboración de <img src="img/patrocinadores/oleo-blanco.svg" alt="Oleo Telecom"></div>
+  </div>
+</section>
+
+<!-- ELEGIR EQUIPO -->
+<section id="p-equipo" class="pantalla solida" hidden>
+  <div class="caja">
+    <h2 class="t" id="t-equipo">Elige tu equipo</h2>
+    <p class="sub" id="s-equipo"></p>
+    <div id="lista-equipos"></div>
+    <div class="fila"><button class="btn linea" id="b-volver-eq" type="button">← Atrás</button></div>
+  </div>
+</section>
+
+<!-- ALINEACIÓN -->
+<section id="p-alin" class="pantalla solida" hidden>
+  <div class="caja">
+    <h2 class="t" id="t-alin">Tu equipo</h2>
+    <p class="sub">Toca un jugador para cambiarlo. ★ = tienes su cromo: su tiro especial carga el doble de rápido.</p>
+    <div id="alin"></div>
+    <div class="chips">Dificultad:
+      <button type="button" data-dif="facil">Fácil</button><button type="button" data-dif="normal">Normal</button><button type="button" data-dif="crack">Crack</button>
+    </div>
+    <div class="chips">Duración:
+      <button type="button" data-mitad="60">2 × 1 min</button><button type="button" data-mitad="120">2 × 2 min</button><button type="button" data-mitad="180">2 × 3 min</button>
+    </div>
+    <div class="fila"><button class="btn linea" id="b-volver-alin" type="button">← Equipos</button><button class="btn rojo" id="b-empezar" type="button">¡Al campo!</button></div>
+  </div>
+</section>
+
+<!-- AYUDA -->
+<section id="p-ayuda" class="pantalla solida" hidden>
+  <div class="caja">
+    <h2 class="t">Cómo se juega</h2>
+    <div class="ayuda">
+      <div><b>Mover</b>Arrastra el dedo en la parte izquierda de la pantalla. <span class="k">←↑→↓</span> en el ordenador.</div>
+      <div><b>Con balón</b><b style="display:inline;font-size:14px;color:var(--oro2)">PASE</b> al compañero que miras. <b style="display:inline;font-size:14px;color:var(--oro2)">TIRO</b>: mantén para más fuerza, suelta para chutar. <span class="k">X</span> <span class="k">Z</span></div>
+      <div><b>Sin balón</b><b style="display:inline;font-size:14px;color:var(--oro2)">CAMBIO</b> de jugador y <b style="display:inline;font-size:14px;color:var(--oro2)">ENTRADA</b>. ¡Ojo! Si no tocas balón es falta, y en el área, penalti.</div>
+      <div><b>¡Chilena!</b>Cuando el balón llega por el aire, el botón TIRO se pone dorado. ¡Púlsalo!</div>
+      <div><b>⚡ Especial</b>La barra se llena con buenos pases. Pulsa ⚡ y tu siguiente tiro será especial. <span class="k">C</span></div>
+      <div><b>Penaltis</b>Tirando: pulsa TIRO con la mira dentro. Parando: elige lado con el joystick.</div>
+    </div>
+    <div class="especiales"><span>🔥 Cañonazo de fuego</span><span>⚡ Tiro rayo</span><span>👻 Balón fantasma</span><span>🍌 Efecto banana</span><span>🫒 Aceituna de Jaén</span></div>
+    <div class="fila"><button class="btn rojo" id="b-ayuda-ok" type="button">¡A jugar!</button></div>
+  </div>
+</section>
+
+<!-- DESCANSO -->
+<section id="p-descanso" class="pantalla solida" hidden>
+  <div class="caja">
+    <h2 class="t">Descanso</h2>
+    <div class="marcador-g" id="d-marcador"></div>
+    <div class="anuncio">El descanso llega gracias a <b>Oleo Telecom</b>: telefonía, fibra y energía para Villatorres.</div>
+    <div class="fila"><button class="btn rojo" id="b-segunda" type="button">Segunda parte</button></div>
+  </div>
+</section>
+
+<!-- PAUSA -->
+<section id="p-pausa" class="pantalla solida" hidden>
+  <div class="caja">
+    <h2 class="t">Pausa</h2>
+    <div class="fila"><button class="btn rojo" id="b-seguir" type="button">Seguir jugando</button><button class="btn linea b-sonido" type="button">🔊 Sonido</button><button class="btn linea" id="b-salir" type="button">Salir al menú</button></div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="p-final" class="pantalla solida" hidden>
+  <div class="caja">
+    <h2 class="t" id="f-titulo">Final</h2>
+    <div class="marcador-g" id="f-marcador"></div>
+    <canvas id="f-cara" width="160" height="160"></canvas>
+    <p class="sub" id="f-mvp"></p>
+    <div class="fila"><button class="btn rojo" id="b-revancha" type="button">Revancha</button><button class="btn linea" id="b-otros" type="button">Otros equipos</button><a class="btn linea" href="mialbum.html">Ganar más cromos</a></div>
+    <div class="anuncio">¿Tienes una empresa? <b>Pon tu valla en el campo de los Cabezones.</b> Solo para clientes de Oleo Telecom.</div>
+  </div>
+</section>
+
+<div id="cargando">Preparando a los cabezones…</div>
+
+<script src="demo.js?v=5"></script>
+<script src="juego.js?v=10"></script>
+</body>
+</html>

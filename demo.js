@@ -212,7 +212,7 @@ const Demo = (() => {
   function inicia() {
     if (!activo) return;
     css();
-    document.body.insertAdjacentHTML("beforeend", `<div class="demo-pill" role="note"><small>Modo demostración</small><a href="mialbum.html">Abrir un sobre</a></div>`);
+    document.body.insertAdjacentHTML("beforeend", `<div class="demo-pill" role="note"><small>Modo demostración</small><a href="mialbum.html">Abrir un sobre</a><a href="juego.html">⚽ Jugar</a></div>`);
     const nav = document.querySelector("nav ul");
     if (nav && !nav.querySelector('a[href="mialbum.html"]')) nav.insertAdjacentHTML("beforeend", `<li><a href="mialbum.html">Mi álbum</a></li>`);
     entrevistas();

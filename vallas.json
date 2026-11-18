@@ -1,0 +1,12 @@
+{
+  "nota": "Vallas del juego Cabezones. Solo empresas clientes de Oleo Telecom. Para añadir una: guarda su logo en img/vallas/ y añade una línea como la del ejemplo de abajo (tipo logo). Las vallas se van turnando solas.",
+  "ejemplo": { "tipo": "logo", "logo": "img/vallas/nombre-empresa.png", "fondo": "#FFFFFF", "nombre": "Nombre de la empresa" },
+  "vallas": [
+    { "tipo": "oleo" },
+    { "tipo": "texto", "texto": "TU EMPRESA AQUÍ", "sub": "Solo para clientes de Oleo Telecom", "fondo": "#C9A23A", "color": "#0B1226" },
+    { "tipo": "oleo-claro" },
+    { "tipo": "texto", "texto": "¡AÚPA VILLARGORDO!", "sub": "Escuela Deportiva Villargordo C.F.", "fondo": "#B5122B", "color": "#FFFFFF" },
+    { "tipo": "oleo" },
+    { "tipo": "texto", "texto": "TU EMPRESA AQUÍ", "sub": "Hazte cliente de Oleo Telecom", "fondo": "#FFFFFF", "color": "#0B1226" }
+  ]
+}
