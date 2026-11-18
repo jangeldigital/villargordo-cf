@@ -26,11 +26,11 @@ const pick = L => L[Math.floor(Math.random() * L.length)];
 const EQUIPO_OLEO = {
   id: "oleo", nombre: "Oleo Telecom", menores: false, kits: [2, 3],
   jugadores: [
-    { nombre: "Oleo 4", posicion: "Portero", dorsal: 1, foto: "img/oleo/oleo-4.jpg", zoom: 1 },
-    { nombre: "Oleo 2", posicion: "Defensa", dorsal: 2, foto: "img/oleo/oleo-2.jpg", zoom: 1 },
-    { nombre: "Oleo 3", posicion: "Defensa", dorsal: 4, foto: "img/oleo/oleo-3.jpg", zoom: 1 },
+    { nombre: "José Ángel", posicion: "Portero", dorsal: 1, foto: "img/oleo/oleo-4.jpg", zoom: 1 },
+    { nombre: "Noemí", posicion: "Defensa", dorsal: 2, foto: "img/oleo/oleo-2.jpg", zoom: 1 },
+    { nombre: "Marién", posicion: "Defensa", dorsal: 4, foto: "img/oleo/oleo-3.jpg", zoom: 1 },
     { nombre: "El Router", posicion: "Centrocampista", dorsal: 5 },
-    { nombre: "Oleo 1", posicion: "Delantero", dorsal: 9, foto: "img/oleo/oleo-1.jpg", zoom: 1 },
+    { nombre: "Bresbal", posicion: "Delantero", dorsal: 9, foto: "img/oleo/oleo-1.jpg", zoom: 1 },
   ],
   entrenador: { nombre: "Míster Wifi" },
 };

@@ -3,21 +3,21 @@
   "nombre": "Oleo Telecom",
   "jugadores": [
     {
-      "nombre": "Oleo 4",
+      "nombre": "José Ángel",
       "posicion": "Portero",
       "dorsal": 1,
       "foto": "img/oleo/oleo-4.jpg",
       "zoom": 1
     },
     {
-      "nombre": "Oleo 2",
+      "nombre": "Noemí",
       "posicion": "Defensa",
       "dorsal": 2,
       "foto": "img/oleo/oleo-2.jpg",
       "zoom": 1
     },
     {
-      "nombre": "Oleo 3",
+      "nombre": "Marién",
       "posicion": "Defensa",
       "dorsal": 4,
       "foto": "img/oleo/oleo-3.jpg",
@@ -29,7 +29,7 @@
       "dorsal": 5
     },
     {
-      "nombre": "Oleo 1",
+      "nombre": "Bresbal",
       "posicion": "Delantero",
       "dorsal": 9,
       "foto": "img/oleo/oleo-1.jpg",
