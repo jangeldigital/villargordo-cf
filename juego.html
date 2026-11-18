@@ -21,8 +21,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #hud{position:fixed;inset:0;pointer-events:none;z-index:5}
 #marcador{position:absolute;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(11,18,38,.86);border:1px solid rgba(201,162,58,.5);border-radius:10px;padding:6px 14px;font:800 15px "Big Shoulders Display",Impact,sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 #marcador .eq{display:flex;align-items:center;gap:6px}
-#marcador .eq::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--rojo)}
-#m1::before{background:var(--oliva)!important}
+#marcador .eq::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--c,var(--rojo))}
+#m1::before{background:var(--c,var(--oliva))}
 #goles{font-size:22px;color:var(--oro2);min-width:54px;text-align:center}
 #reloj{font:600 12px "Inter Tight";letter-spacing:.04em;color:#C9CFDD;border-left:1px solid rgba(255,255,255,.2);padding-left:10px;text-transform:none}
 #tanda{position:absolute;top:calc(max(8px,env(safe-area-inset-top)) + 42px);left:50%;transform:translateX(-50%);font:700 12px "Inter Tight";color:var(--oro2)}
@@ -37,17 +37,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #joy:not(.activo) #joy-base{transform:translate(calc(max(20px,env(safe-area-inset-left)) + 76px),calc(100vh - 96px))!important;opacity:.6}
 #joy:not(.activo) #joy-pomo{transform:translate(calc(max(20px,env(safe-area-inset-left)) + 76px),calc(100vh - 96px))!important;opacity:.45}
 #joy:not(.activo)::after{content:"Mover";position:fixed;left:calc(max(20px,env(safe-area-inset-left)) + 76px);top:calc(100vh - 34px);transform:translateX(-50%);font:600 10px "Inter Tight";letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-#botones{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));width:210px;height:170px;pointer-events:none}
+#botones{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));width:240px;height:190px;pointer-events:none}
 #botones button{pointer-events:auto;position:absolute;border-radius:50%;display:grid;place-items:center;font:900 15px "Big Shoulders Display",Impact,sans-serif;letter-spacing:.06em;box-shadow:0 4px 0 rgba(0,0,0,.35),0 8px 18px rgba(0,0,0,.35);touch-action:none;transition:transform .06s}
 #botones button.pulsado{transform:translateY(3px) scale(.96)}
 #b-tiro{right:0;bottom:6px;width:92px;height:92px;background:radial-gradient(circle at 35% 30%,#e2334c,var(--rojo) 60%,#7d0c1d);font-size:18px!important;border:2px solid rgba(255,255,255,.35)}
 #b-tiro.chilena{background:radial-gradient(circle at 35% 30%,#fff1c2,var(--oro) 60%,#8a6c1c);color:var(--noche);animation:late .5s infinite alternate}
 #b-pase{right:104px;bottom:0;width:72px;height:72px;background:radial-gradient(circle at 35% 30%,#2c3d6e,var(--noche2) 70%);border:2px solid rgba(255,255,255,.3)}
-#b-esp{right:96px;bottom:92px;width:58px;height:58px;background:rgba(11,18,38,.85);border:2px solid rgba(201,162,58,.5);font-size:22px!important;overflow:hidden;opacity:.7}
+#b-esp{right:104px;bottom:92px;width:72px;height:72px;background:rgba(11,18,38,.85);border:2px solid rgba(201,162,58,.5);font-size:13px!important;line-height:1.05;overflow:hidden;opacity:.75}
+#b-esp b{display:block;font-size:22px}
+#b-centro{right:8px;bottom:110px;width:76px;height:76px;background:radial-gradient(circle at 35% 30%,#8fb267,#658049 60%,#3E5230);border:2px solid rgba(255,255,255,.35);font-size:14px!important}
+#b-centro.apagado{opacity:.35}
+#botones button[data-k]::after{content:attr(data-k);position:absolute;top:-4px;left:-4px;width:20px;height:20px;border-radius:5px;background:#fff;color:#0B1226;font:800 12px/20px "Inter Tight",Arial;text-align:center;box-shadow:0 2px 0 rgba(0,0,0,.4);display:none}
+@media (hover:hover) and (pointer:fine){#botones button[data-k]::after{display:block}}
 #b-esp.listo{opacity:1;border-color:var(--oro2);background:radial-gradient(circle,#fff1c2,var(--oro));animation:late .6s infinite alternate}
 #b-esp.armado{opacity:1;background:var(--rojo);border-color:#fff}
 @keyframes late{to{transform:scale(1.08);box-shadow:0 0 0 6px rgba(230,205,133,.35),0 8px 18px rgba(0,0,0,.35)}}
-#barra{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:calc(max(14px,env(safe-area-inset-bottom)) + 166px);width:150px;height:14px;border-radius:8px;background:rgba(11,18,38,.8);border:1px solid rgba(201,162,58,.5);overflow:hidden}
+#barra{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:calc(max(14px,env(safe-area-inset-bottom)) + 196px);width:150px;height:14px;border-radius:8px;background:rgba(11,18,38,.8);border:1px solid rgba(201,162,58,.5);overflow:hidden}
 #barra i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--oro),var(--oro2));transition:width .2s}
 #barra span{position:absolute;inset:0;display:grid;place-items:center;font:700 9px "Inter Tight";letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 2px #000}
 
@@ -135,9 +140,10 @@ h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;tex
   <div id="joy" aria-label="Joystick"><div id="joy-base"></div><div id="joy-pomo"></div></div>
   <div id="barra"><i id="barra-fill"></i><span>Especial</span></div>
   <div id="botones">
-    <button id="b-esp" type="button" aria-label="Tiro especial">⚡</button>
-    <button id="b-pase" type="button">PASE</button>
-    <button id="b-tiro" type="button">TIRO</button>
+    <button id="b-esp" type="button" data-k="F" aria-label="Tiro especial"><span><b>⚡</b>ESPECIAL</span></button>
+    <button id="b-centro" type="button" data-k="D">CENTRO</button>
+    <button id="b-pase" type="button" data-k="A">PASE</button>
+    <button id="b-tiro" type="button" data-k="S">TIRO</button>
   </div>
 </div>
 <div id="gira">↻ Gira el móvil para jugar mejor</div>
@@ -191,11 +197,11 @@ h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;tex
   <div class="caja">
     <h2 class="t">Cómo se juega</h2>
     <div class="ayuda">
-      <div><b>Mover</b>Arrastra el dedo en la parte izquierda de la pantalla. <span class="k">←↑→↓</span> en el ordenador.</div>
-      <div><b>Con balón</b><b style="display:inline;font-size:14px;color:var(--oro2)">PASE</b> al compañero que miras. <b style="display:inline;font-size:14px;color:var(--oro2)">TIRO</b>: mantén para más fuerza, suelta para chutar. <span class="k">X</span> <span class="k">Z</span></div>
+      <div><b>Mover</b>Arrastra el dedo en la parte izquierda de la pantalla. En el ordenador, las flechas <span class="k">←↑→↓</span>.</div>
+      <div><b>4 botones</b><span class="k">A</span> PASE · <span class="k">S</span> TIRO (mantén para más fuerza) · <span class="k">D</span> CENTRO al área · <span class="k">F</span> ⚡ ESPECIAL</div>
       <div><b>Sin balón</b><b style="display:inline;font-size:14px;color:var(--oro2)">CAMBIO</b> de jugador y <b style="display:inline;font-size:14px;color:var(--oro2)">ENTRADA</b>. ¡Ojo! Si no tocas balón es falta, y en el área, penalti.</div>
-      <div><b>¡Chilena!</b>Cuando el balón llega por el aire, el botón TIRO se pone dorado. ¡Púlsalo!</div>
-      <div><b>⚡ Especial</b>La barra se llena con buenos pases. Pulsa ⚡ y tu siguiente tiro será especial. <span class="k">C</span></div>
+      <div><b>¡Chilena!</b>Pulsa CENTRO <span class="k">D</span>: pasas a tu delantero y el balón va por el aire. Cuando TIRO se pone dorado, pulsa TIRO <span class="k">S</span>. ¡Aunque te adelantes, sale sola!</div>
+      <div><b>⚡ Especial</b>La barra se llena con buenos pases y robos. Con la barra llena y el balón, pulsa ESPECIAL <span class="k">F</span> y sale el tiro especial al momento.</div>
       <div><b>Penaltis</b>Tirando: pulsa TIRO con la mira dentro. Parando: elige lado con el joystick.</div>
     </div>
     <div class="especiales"><span>🔥 Cañonazo de fuego</span><span>⚡ Tiro rayo</span><span>👻 Balón fantasma</span><span>🍌 Efecto banana</span><span>🫒 Aceituna de Jaén</span></div>
@@ -236,6 +242,6 @@ h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;tex
 <div id="cargando">Preparando a los cabezones…</div>
 
 <script src="demo.js?v=5"></script>
-<script src="juego.js?v=12"></script>
+<script src="juego.js?v=18"></script>
 </body>
 </html>
