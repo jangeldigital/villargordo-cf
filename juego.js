@@ -1394,8 +1394,12 @@ async function pintaAlineacion() {
 document.querySelectorAll("[data-dif]").forEach(b => b.onclick = () => { eleccion.dif = b.dataset.dif; guardaLS("cabezones-dif", eleccion.dif); pintaAlineacion(); });
 document.querySelectorAll("[data-mitad]").forEach(b => b.onclick = () => { eleccion.mitad = +b.dataset.mitad; guardaLS("cabezones-mitad", eleccion.mitad); pintaAlineacion(); });
 
+function completa() {   // pantalla completa y en horizontal (donde el móvil lo permita)
+  const d = document.documentElement;
+  try { if (!document.fullscreenElement && (d.requestFullscreen || d.webkitRequestFullscreen)) { const p = (d.requestFullscreen || d.webkitRequestFullscreen).call(d, { navigationUI: "hide" }); if (p && p.then) p.then(() => { try { screen.orientation.lock("landscape").catch(() => {}); } catch {} }).catch(() => {}); } } catch {}
+}
 async function empieza() {
-  ac();
+  completa(); ac();
   $("#cargando").hidden = false;
   const rival = onceInicial(eleccion.rival).map(j => ({ ...j, propio: false }));
   await nuevoPartido({ kits: kitsPartido(eleccion.mio, eleccion.rival), misters: [eleccion.mio.entrenador, eleccion.rival.entrenador], alin: [eleccion.alin, rival], dif: DIF[eleccion.dif], mitad: eleccion.mitad, nombres: [eleccion.mio.nombre, eleccion.rival.nombre] });
@@ -1405,7 +1409,7 @@ async function empieza() {
   if (!leeLS("cabezones-ayuda-vista")) { S.pausa = true; muestra("p-ayuda"); }
   else { enJuego(); sonido("silbato"); }
 }
-$("#b-jugar").onclick = () => { ac(); pintaEquipos("mio"); };
+$("#b-jugar").onclick = () => { completa(); ac(); pintaEquipos("mio"); };
 $("#b-volver-eq").onclick = () => muestra("p-menu");
 $("#b-volver-alin").onclick = () => pintaEquipos("mio");
 $("#b-empezar").onclick = empieza;
