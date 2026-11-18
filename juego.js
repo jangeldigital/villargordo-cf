@@ -862,8 +862,8 @@ function paso() {
     case "juego":
       if (!S.proteg) { S.tiempo -= DT; if (S.tiempo <= 0) { S.tiempo = 0; finParte(); break; } }
       cazadores();
-      if (!S.attract) controlHumano();
-      for (const p of S.jug) if (p !== S.humano || S.attract) ia(p);
+      if (!S.attract && !S.auto) controlHumano();
+      for (const p of S.jug) if (p !== S.humano || S.attract || S.auto) ia(p);
       for (const p of S.jug) mueve(p);
       separa(); fisicaBalon(); recogidas(); reglas();
       for (let t = 0; t < 2; t++) S.barra[t] = Math.min(100, S.barra[t] + 0.035);
@@ -1349,6 +1349,12 @@ async function arrancaAttract() {
   $("#cargando").hidden = true;
   muestra("p-menu");
   requestAnimationFrame(bucle);
+  if (new URLSearchParams(location.search).has("captura")) {   // para sacar imágenes del juego
+    guardaLS("cabezones-ayuda-vista", true);
+    eleccion.mio = EQUIPOS.find(e => e.id === "alevin"); eleccion.rival = EQUIPOS.find(e => e.id === "cadete");
+    eleccion.alin = onceInicial(eleccion.mio); await empieza(); S.auto = true; S.barra[0] = 85;
+    const seg = +new URLSearchParams(location.search).get("captura") || 0; for (let i = 0; i < seg * 60; i++) { paso(); S.cam.x += 0; camara(); } ocultaGol();
+  }
   window.__cabezones = { get S() { return S; }, EQUIPOS, eleccion, empieza, pinta: pintaEquipos, sim(n) { const v = {}; for (let i = 0; i < n; i++) { if (S.pausa) { if (S.fase === "final") break; S.pausa = false; if (S.parte === 2 && S.fase === "parado") {} } paso(); v[S.fase] = (v[S.fase] || 0) + 1; if (S.aviso) v["a:" + S.aviso.split(" ")[0]] = 1; } return v; }, iniciaPenalti, falta, iniciaTanda };
 })();
 })();
