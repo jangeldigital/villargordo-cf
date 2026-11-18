@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Cabezones del Villargordo</title>
+<title>gOLEO · el fútbol del Villargordo</title>
 <link rel="icon" href="img/escudo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,6 +67,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .marca img{height:46px}
 h1.titulo{font:900 clamp(44px,9vw,88px)/.88 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;margin:14px 0 8px;text-shadow:0 4px 0 var(--rojo),0 10px 30px rgba(0,0,0,.5)}
 h1.titulo em{font-style:normal;color:var(--oro2)}
+h1.goleo{text-transform:none;font-size:clamp(70px,14vw,140px);letter-spacing:-.01em}
+h1.goleo em{color:#9cc26f;text-shadow:0 4px 0 #3E5230,0 10px 30px rgba(0,0,0,.5)}
+.lema{font:700 13px "Inter Tight";letter-spacing:.3em;text-transform:uppercase;color:var(--oro2);margin:0 0 10px}
 .sub{font-size:15px;color:#C9CFDD;line-height:1.45;max-width:520px;margin:0 auto}
 h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;letter-spacing:.03em}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 26px;border-radius:40px;font:800 16px "Big Shoulders Display",Impact;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
@@ -157,7 +160,8 @@ h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;tex
 <section id="p-menu" class="pantalla" hidden>
   <div class="caja">
     <div class="marca"><img src="img/escudo.png" alt="">Escuela Deportiva Villargordo C.F.</div>
-    <h1 class="titulo">Cabezones<br><em>del Villargordo</em></h1>
+    <h1 class="titulo goleo">g<em>OLEO</em></h1>
+    <p class="lema">El fútbol del Villargordo</p>
     <p class="sub">Fútbol 5 contra 5 con las caras de los cromos. Chilenas, faltas, penaltis y tiros especiales. Elige tu categoría y a jugar.</p>
     <div class="fila">
       <button class="btn oro" id="b-jugar" type="button">⚽ Jugar partido</button>
@@ -239,13 +243,13 @@ h2.t{font:900 clamp(26px,5vw,38px) "Big Shoulders Display",Impact,sans-serif;tex
     <canvas id="f-cara" width="160" height="160"></canvas>
     <p class="sub" id="f-mvp"></p>
     <div class="fila"><button class="btn rojo" id="b-revancha" type="button">Revancha</button><button class="btn linea" id="b-otros" type="button">Otros equipos</button><a class="btn linea" href="mialbum.html">Ganar más cromos</a></div>
-    <div class="anuncio">¿Tienes una empresa? <b>Pon tu valla en el campo de los Cabezones.</b> Solo para clientes de Oleo Telecom.</div>
+    <div class="anuncio">¿Tienes una empresa? <b>Pon tu valla en el campo de gOLEO.</b> Solo para clientes de Oleo Telecom.</div>
   </div>
 </section>
 
 <div id="cargando">Preparando a los cabezones…</div>
 
-<script src="demo.js?v=5"></script>
-<script src="juego.js?v=22"></script>
+<script src="demo.js?v=6"></script>
+<script src="juego.js?v=23"></script>
 </body>
 </html>

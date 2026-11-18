@@ -1,4 +1,4 @@
-/* Cabezones del Villargordo · fútbol 5 contra 5 en el navegador
+/* gOLEO · el fútbol del Villargordo · fútbol 5 contra 5 en el navegador
    Las caras salen del cromo de cada jugador. En menores solo se usa la foto real
    si la familia autorizó el juego (campo "juego" en el cromo); si no, cara dibujada. */
 (() => {
@@ -562,6 +562,7 @@ function cogeBalon(p) {
 }
 function gkAtaja(g, v) {
   const b = S.balon;
+  if (!g.estado && b.tiro && b.tiro.t !== g.t && Math.abs(b.y - g.y) > 7) { g.estado = "vuela"; g.et = 26; g.vueloDir = Math.sign(b.y - g.y); g.vy = g.vueloDir * 2.5; }
   const enArea = g.t === 0 ? b.x < BOX_X : b.x > W - BOX_X;
   if (!enArea) return false;
   if (b.tiro && b.tiro.t !== g.t) {
@@ -593,6 +594,7 @@ function mueve(p) {
   if (p.estado) {
     p.et--;
     if (p.estado === "entrada") { p.vx *= 0.95; p.vy *= 0.95; if (S.fase === "juego") compruebaEntrada(p); }
+    else if (p.estado === "vuela") { p.vy *= p.et > 14 ? 0.97 : 0.8; p.vx *= 0.8; }
     else { p.vx *= 0.85; p.vy *= 0.85; }
     if (p.et <= 0) p.estado = "";
   } else {
@@ -687,6 +689,10 @@ function iaConBalon(p) {
   }
   const m = Math.hypot(dx, dy) || 1; p.dx = dx / m; p.dy = dy / m;
 }
+function vuela(g, ty, tt) {   // ¡estirada!
+  g.estado = "vuela"; g.et = 36; g.vueloDir = Math.sign(ty - g.y) || 1;
+  g.vy = clamp((ty - g.y) / Math.max(tt, 7), -7.5, 7.5); g.vx = 0; g.dx = g.dy = 0;
+}
 function iaPortero(g) {
   const b = S.balon, lx = g.t === 0 ? 16 : W - 16;
   if (b.dueno === g) {
@@ -700,6 +706,10 @@ function iaPortero(g) {
     const tt = (lx - b.x) / b.vx; ty = b.y + b.vy * tt; rapido = true;
     if (b.esp === "fantasma" && b.espT % 30 < 22) ty = g.y;
     if (b.esp === "rayo") ty += Math.sin(S.frame * 0.25) * 45;
+  }
+  if (rapido && !g.estado) {
+    const tt = (lx - b.x) / b.vx, off = ty - g.y;
+    if (tt > 0 && tt < 24 && Math.abs(off) > 12 && Math.abs(off) < 150) return vuela(g, ty, tt);
   }
   const enArea = g.t === 0 ? b.x < BOX_X - 30 : b.x > W - BOX_X + 30;
   const db = dist(g, b);
@@ -822,7 +832,7 @@ function recogidas() {
     if (p.fuera || p.estado === "suelo" || p.estado === "chilena") continue;
     if (p === b.pateo && b.cool > 0) continue;
     const gk = p.rol === "GK" && (p.t === 0 ? b.x < BOX_X : b.x > W - BOX_X);
-    const r = gk ? 27 : 17, zmax = gk ? 44 : 13;
+    const r = gk ? (p.estado === "vuela" ? 36 : 27) : 17, zmax = gk ? (p.estado === "vuela" ? 52 : 44) : 13;
     const d = Math.hypot(p.x - b.x, p.y - b.y);
     if (d < r && b.z < zmax && d < md) { md = d; m = p; }
   }
@@ -1162,7 +1172,7 @@ function dibujaJugador(p) {
   if (p.fuera) return;
   const [sx, sy] = pant(p.x, p.y, 0), z = S.cam.z, kit = p.kit;
   ctx.save(); ctx.translate(sx, sy); ctx.scale(z, z);
-  const especial = p.estado === "chilena" || p.estado === "suelo" || p.estado === "entrada" || p.estado === "estira";
+  const especial = p.estado === "chilena" || p.estado === "suelo" || p.estado === "entrada" || p.estado === "estira" || p.estado === "vuela";
   const cx = Math.cos(p.dir), cy = Math.sin(p.dir);
   // vista: 1 de frente, -1 de espaldas, 0 de perfil (con diagonales mezcladas)
   let vista = especial ? 0 : cy > 0.62 ? 1 : cy < -0.62 ? -1 : 0;
@@ -1174,6 +1184,11 @@ function dibujaJugador(p) {
   if (p.estado === "chilena") { const a = (1 - p.et / 36) * Math.PI * 2 * (p.t === 0 ? -1 : 1); ctx.translate(0, -24); ctx.rotate(a); ctx.translate(0, 24 - Math.sin((1 - p.et / 36) * Math.PI) * 22); }
   else if (p.estado === "suelo") { ctx.rotate((izq ? -1 : 1) * Math.PI / 2 * 0.95); ctx.translate(8, 6); }
   else if (p.estado === "entrada") { ctx.translate((izq ? -1 : 1) * 12, -2); ctx.rotate((izq ? 1 : -1) * 1.3); ctx.translate(0, 4); }
+  else if (p.estado === "vuela") {
+    const tot = 36, k = 1 - p.et / tot, sube = Math.sin(Math.min(1, k * 1.6) * Math.PI) * 20;
+    const giro = Math.min(1, k * 4) * 1.4 * (p.t === 0 ? 1 : -1);
+    ctx.translate(0, -sube); ctx.rotate(giro); ctx.translate(0, 6);
+  }
   else if (p.estado === "estira") { const sp = S.pena ? S.pena.buzo : 0; ctx.rotate(sp * 1.2 * (p.t === 0 ? -1 : 1)); }
   if (vista === 0 && izq) ctx.scale(-1, 1);
   ctx.save(); ctx.scale(1.3, 1.3);   // cuerpo más grande: menos cabezón
@@ -1183,7 +1198,7 @@ function dibujaJugador(p) {
   const camO = tono2(cam, -0.32), camC = tono2(cam, 0.22);
   const pnt = kit.pantalon, pntO = tono2(pnt, -0.25), med = kit.medias, medO = tono2(med, -0.3);
   ctx.lineCap = "round"; ctx.lineJoin = "round";
-  const celebra = p.estado === "celebra";
+  const celebra = p.estado === "celebra" || p.estado === "vuela";
   if (vista === 0) {
     /* ---------- PERFIL (mira a la derecha) ---------- */
     const lean = corre * 2.2;
